@@ -13,7 +13,7 @@ See the [Oracle Cloud Infrastructure Terraform Provider docs](https://www.terraf
 
 ## How to use this module
 
-The [examples](./examples/instance_default) folder contains a detailed example that shows how to use this module.
+The [examples](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/tree/master/examples/instance_default) folder contains a detailed example that shows how to use this module.
 
 The following code example creates an Oracle Cloud Infrastructure compute instance:
 
@@ -184,4 +184,4 @@ Copyright (c) 2018, Oracle and/or its affiliates. All rights reserved.
 
 Licensed under the Universal Permissive License 1.0 or Apache License 2.0.
 
-See [LICENSE](/LICENSE.txt) for more details.
+See [LICENSE](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/LICENSE.txt) for more details.
