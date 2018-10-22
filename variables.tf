@@ -66,12 +66,10 @@ variable "skip_source_dest_check" {
 
 variable "subnet_ocid" {
   description = "The OCID of the subnet to create the VNIC in. "
-  default     = ""
 }
 
 variable "ssh_authorized_keys" {
   description = "Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance. "
-  default     = ""
 }
 
 variable "user_data" {
@@ -81,7 +79,6 @@ variable "user_data" {
 
 variable "source_ocid" {
   description = "The OCID of an image or a boot volume to use, depending on the value of source_type. "
-  default     = ""
 }
 
 variable "source_type" {
