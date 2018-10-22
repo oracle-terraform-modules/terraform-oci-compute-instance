@@ -121,5 +121,4 @@ variable "resource_platform" {
 
 variable "vcn_ocid" {
   description = "The OCID of the VCN. "
-  default     = ""
 }
