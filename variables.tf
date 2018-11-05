@@ -54,9 +54,10 @@ variable "hostname_label" {
   default     = ""
 }
 
-variable "private_ip" {
-  description = "A private IP address of your choice to assign to the VNIC. "
-  default     = ""
+variable "private_ips" {
+  description = "Private IP addresses of your choice to assign to the VNICs. "
+  type        = "list"
+  default     = [""]
 }
 
 variable "skip_source_dest_check" {
@@ -64,9 +65,11 @@ variable "skip_source_dest_check" {
   default     = false
 }
 
-variable "subnet_ocid" {
-  description = "The OCID of the subnet to create the VNIC in. "
+variable "subnet_ocids" {
+  description = "The unique identifiers (OCIDs) of the subnets in which the VNICs are created. "
+  type        = "list"
 }
+
 
 variable "ssh_authorized_keys" {
   description = "Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance. "

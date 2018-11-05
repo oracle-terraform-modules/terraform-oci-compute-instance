@@ -19,13 +19,13 @@ The following code example creates an Oracle Cloud Infrastructure compute instan
 
 ```hcl
 module "instance" {
-  source = "../../"
+  source = "oracle-terraform-modules/compute-instance/oci"
 
   compartment_ocid           = "${var.compartment_ocid}"
   instance_display_name      = "${var.instance_display_name}"
   source_ocid                = "${var.source_ocid}"
   vcn_ocid                   = "${var.vcn_ocid}"
-  subnet_ocid                = "${var.subnet_ocid}"
+  subnet_ocids               = "${var.subnet_ocids}"
   ssh_authorized_keys        = "${var.ssh_authorized_keys_file}"
   block_storage_sizes_in_gbs = [60, 70]
 }
@@ -45,9 +45,9 @@ shape | The instance shape
 assign_public_ip | Specifies whether the VNIC should be assigned a public IP address
 vnic_name | A user-friendly name for the VNIC
 hostname_label | The hostname for the VNIC's primary private IP
-private_ip | A private IP address of your choice to assign to the VNIC
+private_ips | A list of private IP address of your choice to assign to the VNIC
 skip_source_dest_check | Specifies whether the source/destination check is disabled on the VNIC
-subnet_ocid | Unique identifier (OCID) of the subnet in which the VNIC is created
+subnet_ocids | A list of of the subnet OCID in which the VNIC is created
 ssh_authorized_keys | Path to the public SSH keys in the **~/.ssh/authorized_keys** file for the default user on the instance
 user_data | User-defined base64-encoded data to be used by `Cloud-Init` to run custom scripts, or provide a custom `Cloud-Init` configuration
 source_ocid | Unique identifier (OCID) of an image or a boot volume, depending on the value of source_type. For more information, see [Oracle Cloud Infrastructure Images](https://docs.cloud.oracle.com/iaas/images/)

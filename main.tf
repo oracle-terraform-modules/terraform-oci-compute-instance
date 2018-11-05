@@ -9,17 +9,8 @@ data "oci_core_subnets" "this" {
 
   filter {
     name   = "id"
-    values = ["${var.subnet_ocid}"]
+    values = ["${var.subnet_ocids}"]
   }
-}
-
-#################
-# Local Variables
-#################
-locals {
-  default_availability_domain = "${lookup(data.oci_core_subnets.this.subnets[0], "availability_domain")}"
-  default_assign_public_ip    = "${lookup(data.oci_core_subnets.this.subnets[0], "prohibit_public_ip_on_vnic") ? 0 : 1 }"
-  assign_public_ip            = "${local.default_assign_public_ip && var.assign_public_ip}"
 }
 
 ############
@@ -27,21 +18,21 @@ locals {
 ############
 resource "oci_core_instance" "this" {
   count                = "${var.instance_count}"
-  availability_domain  = "${local.default_availability_domain}"
+  availability_domain  = "${lookup(data.oci_core_subnets.this.subnets[count.index % length(data.oci_core_subnets.this.subnets)], "availability_domain")}"
   compartment_id       = "${var.compartment_ocid}"
-  display_name         = "${var.instance_count != "1" ? "${var.instance_display_name}_${count.index + 1}" : "${var.instance_display_name}"}"
+  display_name         = "${var.instance_display_name == "" ? "" : "${var.instance_count != "1" ? "${var.instance_display_name}_${count.index + 1}" : "${var.instance_display_name}"}"}"
   extended_metadata    = "${var.extended_metadata}"
   ipxe_script          = "${var.ipxe_script}"
   preserve_boot_volume = "${var.preserve_boot_volume}"
   shape                = "${var.shape}"
 
   create_vnic_details {
-    assign_public_ip       = "${local.assign_public_ip}"
-    display_name           = "${var.vnic_name}"
-    hostname_label         = "${var.hostname_label}"
-    private_ip             = "${var.private_ip}"
+    assign_public_ip       = "${var.assign_public_ip}"
+    display_name           = "${var.vnic_name == "" ? "" : "${var.instance_count != "1" ? "${var.vnic_name}_${count.index + 1}" : "${var.vnic_name}"}"}"
+    hostname_label         = "${var.hostname_label == "" ? "" : "${var.instance_count != "1" ? "${var.hostname_label}-${count.index + 1}" : "${var.hostname_label}"}"}"
+    private_ip             = "${element(var.private_ips, length(var.private_ips) == 1 ? 0 : count.index)}"
     skip_source_dest_check = "${var.skip_source_dest_check}"
-    subnet_id              = "${var.subnet_ocid}"
+    subnet_id              = "${lookup(data.oci_core_subnets.this.subnets[count.index % length(data.oci_core_subnets.this.subnets)], "id")}"
   }
 
   metadata {
@@ -60,23 +51,15 @@ resource "oci_core_instance" "this" {
   }
 }
 
-##################################
-# Instance Credentials Datasource
-##################################
-data "oci_core_instance_credentials" "this" {
-  count       = "${var.resource_platform != "linux" ? var.instance_count : 0}"
-  instance_id = "${oci_core_instance.this.*.id[count.index]}"
-}
-
 #########
 # Volume
 #########
 resource "oci_core_volume" "this" {
   count               = "${var.instance_count * length(var.block_storage_sizes_in_gbs)}"
-  availability_domain = "${local.default_availability_domain}"
+  availability_domain = "${oci_core_instance.this.*.availability_domain[count.index % var.instance_count]}"
   compartment_id      = "${var.compartment_ocid}"
-  display_name        = "this${count.index}"
-  size_in_gbs         = "${element(var.block_storage_sizes_in_gbs, count.index % length(var.block_storage_sizes_in_gbs))}"
+  display_name        = "${oci_core_instance.this.*.display_name[count.index % var.instance_count]}_volume${count.index / var.instance_count}"
+  size_in_gbs         = "${element(var.block_storage_sizes_in_gbs, count.index / var.instance_count)}"
 }
 
 ####################
@@ -86,7 +69,7 @@ resource "oci_core_volume_attachment" "this" {
   count           = "${var.instance_count * length(var.block_storage_sizes_in_gbs)}"
   attachment_type = "${var.attachment_type}"
   compartment_id  = "${var.compartment_ocid}"
-  instance_id     = "${oci_core_instance.this.*.id[count.index / length(var.block_storage_sizes_in_gbs)]}"
+  instance_id     = "${oci_core_instance.this.*.id[count.index % var.instance_count]}"
   volume_id       = "${oci_core_volume.this.*.id[count.index]}"
   use_chap        = "${var.use_chap}"
 }

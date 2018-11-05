@@ -14,7 +14,7 @@ compartment_ocid = "<compartment OCID>"
 instance_display_name = "<Compute instance's display name>"
 source_ocid = "<The OCID of an image or a boot volume>"
 vcn_ocid = "<VCN OCID>"
-subnet_ocid = "<The OCID of the subnet to create the VNIC in>"
+subnet_ocids = ["<a list of the subnet OCIDs which to create the VNICs in>"]
 ssh_authorized_keys = "<path to the public key>"
 
 # Storage Volume Configurations
