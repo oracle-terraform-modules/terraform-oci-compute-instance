@@ -14,7 +14,6 @@ variable "subnet_ocids" {
 
 variable "source_ocid" {}
 variable "ssh_authorized_keys" {}
-variable "vcn_ocid" {}
 
 variable "block_storage_sizes_in_gbs" {
   type = "list"
@@ -31,11 +30,9 @@ provider "oci" {
 module "instance" {
   source = "../../"
 
-  #source                    = "oracle-terraform-modules/compute-instance/oci"
   compartment_ocid           = "${var.compartment_ocid}"
   instance_display_name      = "${var.instance_display_name}"
   source_ocid                = "${var.source_ocid}"
-  vcn_ocid                   = "${var.vcn_ocid}"
   subnet_ocids               = "${var.subnet_ocids}"
   ssh_authorized_keys        = "${var.ssh_authorized_keys}"
   block_storage_sizes_in_gbs = "${var.block_storage_sizes_in_gbs}"

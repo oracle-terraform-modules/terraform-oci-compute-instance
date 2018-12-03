@@ -15,21 +15,6 @@ output "public_ip" {
   value       = ["${module.instance.public_ip}"]
 }
 
-output "volume_attachment_iqn" {
-  description = "Unique IDs assigned to iSCSI devices. Used when attaching a volume to an instance. "
-  value       = ["${module.instance.volume_attachment_iqn}"]
-}
-
-output "volume_attachment_port" {
-  description = "The volume's iSCSI ports. "
-  value       = ["${module.instance.volume_attachment_port}"]
-}
-
-output "volume_attachment_ipv4" {
-  description = "The volume's iSCSI IP addresses. "
-  value       = ["${module.instance.volume_attachment_ipv4}"]
-}
-
 output "instance_username" {
   description = "Usernames to login to Windows instance. "
   value       = ["${module.instance.instance_username}"]

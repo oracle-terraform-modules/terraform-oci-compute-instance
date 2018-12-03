@@ -55,7 +55,7 @@ source_type | The source type for the instance
 instance_timeout | Timeout setting for creating instance(Note: large instance types may need larger timeout than the default 25m)
 instance_count | Number of instances to launch
 block_storage_sizes_in_gbs | The size in GBs of block volumes created and attached to each instance
-attachment_type | Attachment type (Note: paravirtualized attachment may not be supported by some instance images)
+attachment_type | Support two types of volume attachments: iSCSI and Paravirtualized.
 use_chap | Whether to use CHAP authentication for the volume attachment
 resource_platform | Platform in which to create resources
 vcn_ocid | Unique identifier (OCID) of the VCN

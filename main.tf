@@ -3,14 +3,9 @@
 ####################
 # Subnet Datasource
 ####################
-data "oci_core_subnets" "this" {
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id         = "${var.vcn_ocid}"
-
-  filter {
-    name   = "id"
-    values = ["${var.subnet_ocids}"]
-  }
+data "oci_core_subnet" "this" {
+  count     = "${length(var.subnet_ocids)}"
+  subnet_id = "${element(var.subnet_ocids, count.index)}"
 }
 
 ############
@@ -18,7 +13,7 @@ data "oci_core_subnets" "this" {
 ############
 resource "oci_core_instance" "this" {
   count                = "${var.instance_count}"
-  availability_domain  = "${lookup(data.oci_core_subnets.this.subnets[count.index % length(data.oci_core_subnets.this.subnets)], "availability_domain")}"
+  availability_domain  = "${data.oci_core_subnet.this.*.availability_domain[count.index % length(data.oci_core_subnet.this.*.availability_domain)]}"
   compartment_id       = "${var.compartment_ocid}"
   display_name         = "${var.instance_display_name == "" ? "" : "${var.instance_count != "1" ? "${var.instance_display_name}_${count.index + 1}" : "${var.instance_display_name}"}"}"
   extended_metadata    = "${var.extended_metadata}"
@@ -30,9 +25,9 @@ resource "oci_core_instance" "this" {
     assign_public_ip       = "${var.assign_public_ip}"
     display_name           = "${var.vnic_name == "" ? "" : "${var.instance_count != "1" ? "${var.vnic_name}_${count.index + 1}" : "${var.vnic_name}"}"}"
     hostname_label         = "${var.hostname_label == "" ? "" : "${var.instance_count != "1" ? "${var.hostname_label}-${count.index + 1}" : "${var.hostname_label}"}"}"
-    private_ip             = "${element(var.private_ips, length(var.private_ips) == 1 ? 0 : count.index)}"
+    private_ip             = "${element(concat(var.private_ips, list("")), length(var.private_ips) == 0 ? 0 : count.index)}"
     skip_source_dest_check = "${var.skip_source_dest_check}"
-    subnet_id              = "${lookup(data.oci_core_subnets.this.subnets[count.index % length(data.oci_core_subnets.this.subnets)], "id")}"
+    subnet_id              = "${data.oci_core_subnet.this.*.id[count.index % length(data.oci_core_subnet.this.*.id)]}"
   }
 
   metadata {
@@ -49,6 +44,14 @@ resource "oci_core_instance" "this" {
   timeouts {
     create = "${var.instance_timeout}"
   }
+}
+
+##################################
+# Instance Credentials Datasource
+##################################
+data "oci_core_instance_credentials" "this" {
+  count       = "${var.resource_platform != "linux" ? var.instance_count : 0}"
+  instance_id = "${oci_core_instance.this.*.id[count.index]}"
 }
 
 #########
