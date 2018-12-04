@@ -15,21 +15,6 @@ output "public_ip" {
   value       = ["${oci_core_instance.this.*.public_ip}"]
 }
 
-output "volume_attachment_iqn" {
-  description = "Unique IDs assigned to iSCSI devices. Used when attaching a volume to an instance. "
-  value       = ["${oci_core_volume_attachment.this.*.iqn}"]
-}
-
-output "volume_attachment_ipv4" {
-  description = "The volume's iSCSI IP addresses. "
-  value       = ["${oci_core_volume_attachment.this.*.ipv4}"]
-}
-
-output "volume_attachment_port" {
-  description = "The volume's iSCSI ports. "
-  value       = ["${oci_core_volume_attachment.this.*.port}"]
-}
-
 output "instance_username" {
   description = "Usernames to login to Windows instance. "
   value       = ["${data.oci_core_instance_credentials.this.*.username}"]

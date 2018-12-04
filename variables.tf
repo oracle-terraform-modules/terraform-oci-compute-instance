@@ -9,11 +9,6 @@ variable "instance_display_name" {
   default     = ""
 }
 
-variable "availability_domain" {
-  description = "The Availability Domain of the instance. "
-  default     = ""
-}
-
 variable "extended_metadata" {
   description = "Additional metadata key/value pairs that you provide. "
   default     = {}
@@ -41,12 +36,12 @@ variable "shape" {
 
 variable "assign_public_ip" {
   description = "Whether the VNIC should be assigned a public IP address. "
-  default     = true
+  default     = false
 }
 
 variable "vnic_name" {
   description = "A user-friendly name for the VNIC. "
-  default     = "primaryvnic"
+  default     = ""
 }
 
 variable "hostname_label" {
@@ -54,9 +49,10 @@ variable "hostname_label" {
   default     = ""
 }
 
-variable "private_ip" {
-  description = "A private IP address of your choice to assign to the VNIC. "
-  default     = ""
+variable "private_ips" {
+  description = "Private IP addresses of your choice to assign to the VNICs. "
+  type        = "list"
+  default     = []
 }
 
 variable "skip_source_dest_check" {
@@ -64,8 +60,9 @@ variable "skip_source_dest_check" {
   default     = false
 }
 
-variable "subnet_ocid" {
-  description = "The OCID of the subnet to create the VNIC in. "
+variable "subnet_ocids" {
+  description = "The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created. "
+  type        = "list"
 }
 
 variable "ssh_authorized_keys" {
@@ -114,8 +111,4 @@ variable "use_chap" {
 variable "resource_platform" {
   description = "Platform to create resources in. "
   default     = "linux"
-}
-
-variable "vcn_ocid" {
-  description = "The OCID of the VCN. "
 }
