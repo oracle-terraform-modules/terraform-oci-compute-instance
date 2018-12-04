@@ -2,10 +2,10 @@
 
 ### Changed
 - Updated Hostname label for multiple compute instances
-- Updated Volume dispaly name
+- Updated Volume display name
 - Changes variable assign_public_ip default from true to false 
 
 ### Added
-* Support for subnet list
+* Support for multiple subnets
 * Support for paravirtualized attachments 
 * Support for private IP list
