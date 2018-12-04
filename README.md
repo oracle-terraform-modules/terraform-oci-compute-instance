@@ -4,7 +4,6 @@ The Oracle Cloud Infrastructure Compute Instance Terraform Module provides an ea
 
 Please Note:
 
-* The subnet, the compute instances, and the block volumes all must be in the same compartment, as specified by the `compartment_ocid` parameter.
 * Oracle-provided images include rules that restrict access to the boot and block volumes. Oracle recommends that you do not use custom images without these rules unless you understand the security risks. See [Compute Best Practices](https://docs.cloud.oracle.com/iaas/Content/Compute/References/bestpracticescompute.htm#two) for recommendations on how to manage instances.
 
 ## Prerequisites
@@ -47,7 +46,7 @@ vnic_name | A user-friendly name for the VNIC
 hostname_label | The hostname for the VNIC's primary private IP
 private_ips | A list of private IP address of your choice to assign to the VNIC
 skip_source_dest_check | Specifies whether the source/destination check is disabled on the VNIC
-subnet_ocids | A list of of the subnet OCID in which the VNIC is created
+subnet_ocids | A list of of the subnet OCIDs in which to place the instance primary VNICs
 ssh_authorized_keys | Path to the public SSH keys in the **~/.ssh/authorized_keys** file for the default user on the instance
 user_data | User-defined base64-encoded data to be used by `Cloud-Init` to run custom scripts, or provide a custom `Cloud-Init` configuration
 source_ocid | Unique identifier (OCID) of an image or a boot volume, depending on the value of source_type. For more information, see [Oracle Cloud Infrastructure Images](https://docs.cloud.oracle.com/iaas/images/)
@@ -55,7 +54,7 @@ source_type | The source type for the instance
 instance_timeout | Timeout setting for creating instance(Note: large instance types may need larger timeout than the default 25m)
 instance_count | Number of instances to launch
 block_storage_sizes_in_gbs | The size in GBs of block volumes created and attached to each instance
-attachment_type | Support two types of volume attachments: iSCSI and Paravirtualized.
+attachment_type | The type of volume attachment. Allowed values are: iscsi, paravirtualized
 use_chap | Whether to use CHAP authentication for the volume attachment
 resource_platform | Platform in which to create resources
 vcn_ocid | Unique identifier (OCID) of the VCN
