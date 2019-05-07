@@ -61,8 +61,8 @@ resource "oci_core_volume" "this" {
   count               = "${var.instance_count * length(var.block_storage_sizes_in_gbs)}"
   availability_domain = "${oci_core_instance.this.*.availability_domain[count.index % var.instance_count]}"
   compartment_id      = "${var.compartment_ocid}"
-  display_name        = "${oci_core_instance.this.*.display_name[count.index % var.instance_count]}_volume${count.index / var.instance_count}"
-  size_in_gbs         = "${element(var.block_storage_sizes_in_gbs, count.index / var.instance_count)}"
+  display_name        = "${oci_core_instance.this.*.display_name[count.index % var.instance_count]}_volume${floor(count.index / var.instance_count)}"
+  size_in_gbs         = "${element(var.block_storage_sizes_in_gbs, floor(count.index / var.instance_count))}"
 }
 
 ####################
