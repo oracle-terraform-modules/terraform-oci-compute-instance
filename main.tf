@@ -30,7 +30,7 @@ resource "oci_core_instance" "this" {
     subnet_id              = "${data.oci_core_subnet.this.*.id[count.index % length(data.oci_core_subnet.this.*.id)]}"
   }
 
-  metadata {
+  metadata = {
     ssh_authorized_keys = "${file("${var.ssh_authorized_keys}")}"
     user_data           = "${var.user_data}"
   }
