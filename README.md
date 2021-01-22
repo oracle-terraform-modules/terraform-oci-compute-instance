@@ -4,7 +4,7 @@ The Oracle Cloud Infrastructure Compute Instance Terraform Module provides an ea
 
 Please Note:
 
-* Oracle-provided images include rules that restrict access to the boot and block volumes. Oracle recommends that you do not use custom images without these rules unless you understand the security risks. See [Compute Best Practices](https://docs.cloud.oracle.com/iaas/Content/Compute/References/bestpracticescompute.htm#two) for recommendations on how to manage instances.
+* Oracle-provided images include firewall rules that restrict access to the boot and block volumes. Oracle recommends that you do not use custom images without these rules unless you understand the security risks. See [Compute Best Practices](https://docs.cloud.oracle.com/iaas/Content/Compute/References/bestpracticescompute.htm#two) for recommendations on how to manage instances.
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ module "instance" {
 
 Argument | Description
 --- | ---
-compartment_ocid | Unique identifier (OCID) of the compartment in which the VCN is created
+compartment_ocid | Unique Oracle Cloud Identifier (OCID) of the compartment in which the VCN is created
 instance_display_name | Display name of the compute instance
 extended_metadata | Additional metadata key/value pairs provided by the user
 ipxe_script | The iPXE script which initiates the boot process on the compute instance
@@ -45,10 +45,10 @@ vnic_name | A user-friendly name for the VNIC
 hostname_label | The hostname for the VNIC's primary private IP
 private_ips | A list of private IP address of your choice to assign to the VNIC
 skip_source_dest_check | Specifies whether the source/destination check is disabled on the VNIC
-subnet_ocids | A list of of the subnet OCIDs in which to place the instance primary VNICs
-ssh_authorized_keys | Path to the public SSH keys in the **~/.ssh/authorized_keys** file for the default user on the instance
+subnet_ocids | A list of the subnet OCIDs in which to place the instance's primary VNICs
+ssh_authorized_keys | Path to the public SSH keys to place in the instance's **~/.ssh/authorized_keys** file for the default user on the instance
 user_data | User-defined base64-encoded data to be used by `Cloud-Init` to run custom scripts, or provide a custom `Cloud-Init` configuration
-source_ocid | Unique identifier (OCID) of an image or a boot volume, depending on the value of source_type. For more information, see [Oracle Cloud Infrastructure Images](https://docs.cloud.oracle.com/iaas/images/)
+source_ocid | Unique Oracle Cloud Identifier (OCID) of an image or a boot volume to use as source of instance creation, depending on the value of source_type. For more information, see [Oracle Cloud Infrastructure Images](https://docs.cloud.oracle.com/iaas/images/)
 source_type | The source type for the instance
 instance_timeout | Timeout setting for creating instance(Note: large instance types may need larger timeout than the default 25m)
 instance_count | Number of instances to launch
@@ -81,7 +81,7 @@ net start winrm
 
 * For guidance configuring iSCSI on a Linux platform, see [iSCSI Commands and Information](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm). See also the example file [remote-exec.tf](https://github.com/oracle/terraform-provider-oci/blob/master/docs/examples/compute/instance/remote-exec.tf) for inline commands using `remote_exec_script`.
 
-Following is the sample inline script for not using CHAP authentication:
+Following is the sample inline script that isn't using CHAP authentication:
 
 ```hcl
 # Logging for troubleshooting.
