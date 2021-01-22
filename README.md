@@ -174,11 +174,13 @@ echo "$uuid ${var.volume_mount_directory} ext4 defaults,noatime,_netdev,nofail  
 
 ## Contributing
 
-This project is open source. Oracle appreciates any contributions that are made by the open source community.
+This project is open source. Oracle appreciates any contributions that are made by the open source community. 
+
+Learn how to [contribute](CONTRIBUTING.md)).
 
 ## License
 
-Copyright (c) 2018, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2021, Oracle and/or its affiliates. All rights reserved.
 
 Licensed under the Universal Permissive License 1.0 or Apache License 2.0.
 
