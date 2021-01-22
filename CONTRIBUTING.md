@@ -28,8 +28,14 @@ Only pull requests from committers that can be verified as having signed the OCA
 
 1. Create a branch in your own fork to implement the changes. We recommend using the issue number as part of your branch name, e.g.: `1234-fixes`
 
-1. Ensure that any documentation is updated with the changes that are required by your fix.
+1. Ensure that any documentation is updated with the changes that are required by your fix
 
-1. Ensure that any samples are updated if the base image has been changed.
+1. Update README.md when necessary
 
-1. Submit the pull request. **Do not leave the pull request description blank**. Explain exactly what your changes are meant to do and provide simple steps on how to validate your changes. Ensure that you reference the issue you created as well. We will assign the pull request to 2-3 people for review before it is merged.
+1. Ensure that any samples are updated if the base image has been changed
+
+1. Update CHANGELOG.md - add information about the changes that are done in this pull request, increment the version
+
+1. Tag your branch with the new version
+
+1. Submit the pull request. **Do not leave the pull request description blank**. Explain exactly what your changes are meant to do and provide simple steps on how to validate your changes. Ensure that you reference the issue you created as well adding `#1234` to the description. We will assign the pull request to 2-3 people for review before it is merged.

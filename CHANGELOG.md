@@ -1,4 +1,4 @@
-## 2.0.1 - 2021-01-22
+## 2.0.2 - 2021-01-22
 
 ### Added
 
@@ -8,6 +8,14 @@
 
 * Add link to CONTRIBUTING.md in README.md
 * Bump copyright year to 2021 in README.md
+
+
+## 2.0.1 - 2019-05-08
+
+### Changed
+
+* v0.12 preparation: Fix metadata usage to be canonical
+
 
 ## 2.0.0 - 2018-12-04
 
