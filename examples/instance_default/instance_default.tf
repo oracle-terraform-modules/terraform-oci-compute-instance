@@ -36,6 +36,9 @@ variable "block_storage_sizes_in_gbs" {
   type = list(string)
 }
 
+variable "shape" {
+}
+
 provider "oci" {
   tenancy_ocid     = var.tenancy_ocid
   user_ocid        = var.user_ocid
@@ -53,4 +56,5 @@ module "instance" {
   subnet_ocids               = var.subnet_ocids
   ssh_authorized_keys        = var.ssh_authorized_keys
   block_storage_sizes_in_gbs = var.block_storage_sizes_in_gbs
+  shape                      = var.shape
 }
