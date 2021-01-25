@@ -78,7 +78,6 @@ resource "oci_core_volume" "this" {
 resource "oci_core_volume_attachment" "this" {
   count           = var.instance_count * length(var.block_storage_sizes_in_gbs)
   attachment_type = var.attachment_type
-  compartment_id  = var.compartment_ocid
   instance_id     = oci_core_instance.this[count.index % var.instance_count].id
   volume_id       = oci_core_volume.this[count.index].id
   use_chap        = var.use_chap
