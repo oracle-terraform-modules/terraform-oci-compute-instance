@@ -1,3 +1,10 @@
+## 2.0.3 - 2021-01-31
+
+### Changed
+
+* Upgrade to HCL2, for compatibility with Terraform 0.12 or higher
+* Cleanup copyright notice statements in source files
+
 ## 2.0.2 - 2021-01-22
 
 ### Added
