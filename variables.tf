@@ -1,4 +1,4 @@
-// Copyright (c) 2018, Oracle and/or its affiliates. All rights reserved.
+// Copyright (c) 2018, 2021, Oracle and/or its affiliates. 
 
 variable "compartment_ocid" {
   description = "Compartment's OCID where VCN will be created. "
@@ -51,7 +51,7 @@ variable "hostname_label" {
 
 variable "private_ips" {
   description = "Private IP addresses of your choice to assign to the VNICs. "
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -62,7 +62,7 @@ variable "skip_source_dest_check" {
 
 variable "subnet_ocids" {
   description = "The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created. "
-  type        = "list"
+  type        = list(string)
 }
 
 variable "ssh_authorized_keys" {

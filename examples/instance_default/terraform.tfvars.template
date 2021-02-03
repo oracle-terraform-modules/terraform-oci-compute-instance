@@ -11,9 +11,9 @@ region = "<region in which to operate, example: us-ashburn-1, us-phoenix-1>"
 compartment_ocid = "<compartment OCID>"
 
 # Compute Instance Configurations
+shape = "VM.Standard2.1"
 instance_display_name = "<Compute instance's display name>"
 source_ocid = "<The OCID of an image or a boot volume>"
-vcn_ocid = "<VCN OCID>"
 subnet_ocids = ["<a list of the subnet OCIDs which to create the VNICs in>"]
 ssh_authorized_keys = "<path to the public key>"
 
