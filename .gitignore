@@ -1,6 +1,14 @@
 .terraform
 terraform.tfstate
 *.tfstate*
+*.lock
 terraform.tfvars
+*.auto.tfvars
 .DS_Store
 .idea
+.vscode
+
+tests
+
+
+
