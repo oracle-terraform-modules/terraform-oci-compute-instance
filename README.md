@@ -4,7 +4,7 @@ The Oracle Cloud Infrastructure Compute Instance Terraform Module provides an ea
 
 Please Note:
 
-* Oracle-provided images include firewall rules that restrict access to the boot and block volumes. Oracle recommends that you do not use custom images without these rules unless you understand the security risks. See [Compute Best Practices](https://docs.cloud.oracle.com/iaas/Content/Compute/References/bestpracticescompute.htm#two) for recommendations on how to manage instances.
+- Oracle-provided images include firewall rules that restrict access to the boot and block volumes. Oracle recommends that you do not use custom images without these rules unless you understand the security risks. See [Compute Best Practices](https://docs.cloud.oracle.com/iaas/Content/Compute/References/bestpracticescompute.htm#two) for recommendations on how to manage instances.
 
 ## Prerequisites
 
@@ -19,49 +19,79 @@ The following code example creates an Oracle Cloud Infrastructure compute instan
 ```hcl
 module "instance" {
   source = "oracle-terraform-modules/compute-instance/oci"
-
-  compartment_ocid           = "${var.compartment_ocid}"
-  instance_display_name      = "${var.instance_display_name}"
-  source_ocid                = "${var.source_ocid}"
-  subnet_ocids               = "${var.subnet_ocids}"
-  ssh_authorized_keys        = "${var.ssh_authorized_keys_file}"
+  instance_count             = 1 # how many instances do you want?
+  ad_number                  = 1 # AD number to provision instances. If null, instances are provisionned in a rolling manner starting with AD1
+  compartment_ocid           = var.compartment_ocid
+  instance_display_name      = var.instance_display_name
+  source_ocid                = var.source_ocid
+  subnet_ocids               = var.subnet_ocids
+  assign_public_ip           = var.assign_public_ip
+  ssh_authorized_keys        = var.ssh_authorized_keys_file
   block_storage_sizes_in_gbs = [60, 70]
+  shape                      = var.shape
 }
 ```
 
-**Following are arguments available to the Compute Instance module:**
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-Argument | Description
---- | ---
-compartment_ocid | Unique Oracle Cloud Identifier (OCID) of the compartment in which the VCN is created
-instance_display_name | Display name of the compute instance
-extended_metadata | Additional metadata key/value pairs provided by the user
-ipxe_script | The iPXE script which initiates the boot process on the compute instance
-preserve_boot_volume | Specifies whether to delete or preserve the boot volume when the instance is terminated
-boot_volume_size_in_gbs | The size of the boot volume in GBs
-shape | The instance shape
-assign_public_ip | Specifies whether the VNIC should be assigned a public IP address
-vnic_name | A user-friendly name for the VNIC
-hostname_label | The hostname for the VNIC's primary private IP
-private_ips | A list of private IP address of your choice to assign to the VNIC
-skip_source_dest_check | Specifies whether the source/destination check is disabled on the VNIC
-subnet_ocids | A list of the subnet OCIDs in which to place the instance's primary VNICs
-ssh_authorized_keys | Path to the public SSH keys to place in the instance's **~/.ssh/authorized_keys** file for the default user on the instance
-user_data | User-defined base64-encoded data to be used by `Cloud-Init` to run custom scripts, or provide a custom `Cloud-Init` configuration
-source_ocid | Unique Oracle Cloud Identifier (OCID) of an image or a boot volume to use as source of instance creation, depending on the value of source_type. For more information, see [Oracle Cloud Infrastructure Images](https://docs.cloud.oracle.com/iaas/images/)
-source_type | The source type for the instance
-instance_timeout | Timeout setting for creating instance(Note: large instance types may need larger timeout than the default 25m)
-instance_count | Number of instances to launch
-block_storage_sizes_in_gbs | The size in GBs of block volumes created and attached to each instance
-attachment_type | The type of volume attachment. Allowed values are: iscsi, paravirtualized
-use_chap | Whether to use CHAP authentication for the volume attachment
-resource_platform | Platform in which to create resources
-vcn_ocid | Unique identifier (OCID) of the VCN
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| oci | >= 3.27 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| oci | >= 3.27 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| ad\_number | (Optional) The availability domain number of the instance. If none is provided, it will start with AD-1 and continue in round-robin. | `number` | `null` | no |
+| assign\_public\_ip | Whether the VNIC should be assigned a public IP address. | `bool` | `false` | no |
+| attachment\_type | (Optional) The type of volume. The only supported values are iscsi and paravirtualized. | `string` | `"paravirtualized"` | no |
+| block\_storage\_sizes\_in\_gbs | Sizes of volumes to create and attach to each instance. | `list(number)` | `[]` | no |
+| boot\_volume\_size\_in\_gbs | The size of the boot volume in GBs. | `number` | `null` | no |
+| compartment\_ocid | (Required) (Updatable) The OCID of the compartment where to create all resources | `string` | n/a | yes |
+| extended\_metadata | (Optional) (Updatable) Additional metadata key/value pairs that you provide. | `map(any)` | `{}` | no |
+| hostname\_label | The hostname for the VNIC's primary private IP. | `string` | `""` | no |
+| instance\_count | Number of instances to launch. | `number` | `1` | no |
+| instance\_display\_name | (Optional) (Updatable) A user-friendly name for the instance. Does not have to be unique, and it's changeable. | `string` | `""` | no |
+| instance\_timeout | Timeout setting for creating instance. | `string` | `"25m"` | no |
+| ipxe\_script | (Optional) The iPXE script which to continue the boot process on the instance. | `string` | `null` | no |
+| preserve\_boot\_volume | Specifies whether to delete or preserve the boot volume when terminating an instance. | `bool` | `false` | no |
+| private\_ips | Private IP addresses of your choice to assign to the VNICs. | `list(string)` | `[]` | no |
+| resource\_platform | Platform to create resources in. | `string` | `"linux"` | no |
+| shape | The shape of an instance. | `string` | `"VM.Standard2.1"` | no |
+| skip\_source\_dest\_check | Whether the source/destination check is disabled on the VNIC. | `bool` | `false` | no |
+| source\_ocid | The OCID of an image or a boot volume to use, depending on the value of source\_type. | `string` | n/a | yes |
+| source\_type | The source type for the instance. | `string` | `"image"` | no |
+| ssh\_authorized\_keys | Public SSH keys path to be included in the ~/.ssh/authorized\_keys file for the default user on the instance. | `string` | n/a | yes |
+| subnet\_ocids | The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created. | `list(string)` | n/a | yes |
+| use\_chap | (Applicable when attachment\_type=iscsi) Whether to use CHAP authentication for the volume attachment. | `bool` | `false` | no |
+| user\_data | Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration. | `string` | `null` | no |
+| vnic\_name | A user-friendly name for the VNIC. | `string` | `""` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| instance\_id | ocid of created instances. |
+| instance\_password | Passwords to login to Windows instance. |
+| instance\_username | Usernames to login to Windows instance. |
+| private\_ip | Private IPs of created instances. |
+| public\_ip | Public IPs of created instances. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Windows remote scripts execution
+
 Terraform supports using Windows Remote Management (WinRM) for connecting to Windows instances. Ensure that your Windows image has WinRM properly configured to allow remote access. Following is a sample WinRM configuration:
 
-```hcl
+```HCL
 winrm quickconfig -q
 winrm set winrm/config/winrs '@{MaxMemoryPerShellMB="300"}’'
 winrm set winrm/config ‘@{MaxTimeoutms=”1800000″}’
@@ -77,14 +107,14 @@ net start winrm
 ```
 
 ## Configure iSCSI volume attachments
-* For guidance configuring iSCSI on a Windows platform, see [Adding a Block Volume to a Windows Instance](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingstorageForWindows.htm).
 
-* For guidance configuring iSCSI on a Linux platform, see [iSCSI Commands and Information](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm). See also this example of inline iSCSI commands execution using `iscsiadm` CLI called from terraform file: [instance.tf](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/compute/instance/instance.tf).
+- For guidance configuring iSCSI on a Windows platform, see [Adding a Block Volume to a Windows Instance](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingstorageForWindows.htm).
 
+- For guidance configuring iSCSI on a Linux platform, see [iSCSI Commands and Information](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm). See also this example of inline iSCSI commands execution using `iscsiadm` CLI called from terraform file: [instance.tf](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/compute/instance/instance.tf).
 
 ## Contributing
 
-This project is open source. Oracle appreciates any contributions that are made by the open source community. 
+This project is open source. Oracle appreciates any contributions that are made by the open source community.
 
 Learn how to [contribute](CONTRIBUTING.md).
 
