@@ -12,6 +12,8 @@ Given a version number MAJOR.MINOR.PATCH:
 
 ## [UNRELEASED]
 
+## 2.0.4 - 2021-02-13
+
 ### Changed
 
 - Terraform block now defines minimum terraform version and required providers. Block Moved to main.tf

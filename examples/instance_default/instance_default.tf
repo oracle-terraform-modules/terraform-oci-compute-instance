@@ -67,7 +67,7 @@ provider "oci" {
 module "instance" {
   source                     = "../../"
   instance_count             = var.instance_count
-  ad_number                  = 3
+  ad_number                  = 1
   compartment_ocid           = var.compartment_ocid
   instance_display_name      = var.instance_display_name
   source_ocid                = var.source_ocid
