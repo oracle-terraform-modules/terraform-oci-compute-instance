@@ -12,6 +12,15 @@ Given a version number MAJOR.MINOR.PATCH:
 
 ## [UNRELEASED]
 
+Features:
+
+- add Flex instance shape support
+
+Repo maintenance:
+
+- add .gitattributes for consistent line ending and tab
+- add pre-commit configuration file
+
 ## 2.0.4 - 2021-02-13
 
 ### Changed
