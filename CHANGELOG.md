@@ -12,9 +12,14 @@ Given a version number MAJOR.MINOR.PATCH:
 
 ## [UNRELEASED]
 
-Features:
+Added:
 
-- add Flex instance shape support
+- support Flex instance shape
+- new output : instances_summary
+
+Fixed:
+
+- Outputs produces unnecessarily multidimensional objects (Issue #31)
 
 Repo maintenance:
 
