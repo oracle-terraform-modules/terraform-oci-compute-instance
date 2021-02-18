@@ -1,27 +1,21 @@
 // Copyright (c) 2018, 2021 Oracle and/or its affiliates.
 
-output "instance_id" {
+output "instance_flex" {
   description = "ocid of created instances. "
-  value       = module.instance.instance_id
+  value       = module.instance_flex.instances_summary
 }
 
-output "private_ip" {
-  description = "Private IPs of created instances. "
-  value       = module.instance.private_ip
+output "instance_flex_custom" {
+  description = "ocid of created instances. "
+  value       = module.instance_flex_custom.instances_summary
 }
 
-output "public_ip" {
-  description = "Public IPs of created instances. "
-  value       = module.instance.public_ip
+output "instance_nonflex" {
+  description = "ocid of created instances. "
+  value       = module.instance_nonflex.instances_summary
 }
 
-output "instance_username" {
-  description = "Usernames to login to Windows instance. "
-  value       = module.instance.instance_username
-}
-
-output "instance_password" {
-  description = "Passwords to login to Windows instance. "
-  sensitive   = true
-  value       = module.instance.instance_password
+output "instance_nonflex_custom" {
+  description = "ocid of created instances. "
+  value       = module.instance_nonflex_custom.instances_summary
 }

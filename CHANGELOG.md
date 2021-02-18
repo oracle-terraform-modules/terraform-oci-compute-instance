@@ -12,6 +12,20 @@ Given a version number MAJOR.MINOR.PATCH:
 
 ## [UNRELEASED]
 
+Added:
+
+- support Flex instance shape
+- new output : instances_summary
+
+Fixed:
+
+- Outputs produces unnecessarily multidimensional objects (Issue #31)
+
+Repo maintenance:
+
+- add .gitattributes for consistent line ending and tab
+- add pre-commit configuration file
+
 ## 2.0.4 - 2021-02-13
 
 ### Changed

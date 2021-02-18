@@ -30,6 +30,29 @@ data "oci_core_subnet" "this" {
 }
 
 ############
+# Shapes
+############
+
+// Create a data source for compute shapes.
+// Filter on AD1 to remove duplicates. This should give all the shapes supported on the region.
+// This will not check quota and limits for AD requested at resource creation
+data "oci_core_shapes" "ad1" {
+  compartment_id      = var.compartment_ocid
+  availability_domain = local.ADs[0]
+}
+
+locals {
+  shapes_config = {
+    // Iterate through data.oci_core_shapes.ad1.shapes and create a map { name = { memory_in_gbs = "xx"; ocpus = "xx" } }
+    for i in data.oci_core_shapes.ad1.shapes : i.name => {
+      "memory_in_gbs" = i.memory_in_gbs
+      "ocpus"         = i.ocpus
+    }
+  }
+  shape_is_flex = length(regexall("^*.Flex", var.shape)) > 0
+}
+
+############
 # Instance
 ############
 resource "oci_core_instance" "this" {
@@ -42,6 +65,12 @@ resource "oci_core_instance" "this" {
   ipxe_script          = var.ipxe_script
   preserve_boot_volume = var.preserve_boot_volume
   shape                = var.shape
+  shape_config {
+    // If shape name contains ".Flex" and instance_flex inputs are not null, use instance_flex inputs values for shape_config block
+    // Else use values from data.oci_core_shapes.ad1 for var.shape
+    memory_in_gbs = local.shape_is_flex == true && var.instance_flex_memory_in_gbs != null ? var.instance_flex_memory_in_gbs : local.shapes_config[var.shape]["memory_in_gbs"]
+    ocpus         = local.shape_is_flex == true && var.instance_flex_ocpus != null ? var.instance_flex_ocpus : local.shapes_config[var.shape]["ocpus"]
+  }
 
   create_vnic_details {
     assign_public_ip = var.assign_public_ip

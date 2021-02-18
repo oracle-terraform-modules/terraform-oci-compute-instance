@@ -60,6 +60,8 @@ module "instance" {
 | hostname\_label | The hostname for the VNIC's primary private IP. | `string` | `""` | no |
 | instance\_count | Number of instances to launch. | `number` | `1` | no |
 | instance\_display\_name | (Optional) (Updatable) A user-friendly name for the instance. Does not have to be unique, and it's changeable. | `string` | `""` | no |
+| instance\_flex\_memory\_in\_gbs | (Optional) (Updatable) The total amount of memory available to the instance, in gigabytes. | `number` | `null` | no |
+| instance\_flex\_ocpus | (Optional) (Updatable) The total number of OCPUs available to the instance. | `number` | `null` | no |
 | instance\_timeout | Timeout setting for creating instance. | `string` | `"25m"` | no |
 | ipxe\_script | (Optional) The iPXE script which to continue the boot process on the instance. | `string` | `null` | no |
 | preserve\_boot\_volume | Specifies whether to delete or preserve the boot volume when terminating an instance. | `bool` | `false` | no |
@@ -82,6 +84,7 @@ module "instance" {
 | instance\_id | ocid of created instances. |
 | instance\_password | Passwords to login to Windows instance. |
 | instance\_username | Usernames to login to Windows instance. |
+| instances\_summary | Private and Public IPs for each instance. |
 | private\_ip | Private IPs of created instances. |
 | public\_ip | Public IPs of created instances. |
 
