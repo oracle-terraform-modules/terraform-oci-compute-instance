@@ -1,3 +1,4 @@
+<!-- TO BE EDITED -->
 ## Create Compute Instance
 This example creates a compute instance and a set of block volumes.
 
@@ -30,8 +31,8 @@ block_storage_sizes_in_gbs = [60, 70]
 
 Then apply the example using the following commands:
 
-```
-$ terraform init
-$ terraform plan
-$ terraform apply
+```shell
+> terraform init
+> terraform plan
+> terraform apply
 ```

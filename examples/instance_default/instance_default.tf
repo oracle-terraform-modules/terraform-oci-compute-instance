@@ -45,7 +45,8 @@ variable "block_storage_sizes_in_gbs" {
 }
 
 variable "shape" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "assign_public_ip" {
@@ -64,16 +65,67 @@ provider "oci" {
   region           = var.region
 }
 
-module "instance" {
+# * This module will create a Flex Compute Instance, using default values: 1 OCPU, 16 GB memory.
+module "instance_flex" {
   source                     = "../../"
-  instance_count             = var.instance_count
+  instance_count             = 1
+  shape                      = "VM.Standard.E3.Flex"
   ad_number                  = 1
   compartment_ocid           = var.compartment_ocid
-  instance_display_name      = var.instance_display_name
+  instance_display_name      = "instance_flex"
   source_ocid                = var.source_ocid
   subnet_ocids               = var.subnet_ocids
   ssh_authorized_keys        = var.ssh_authorized_keys
   block_storage_sizes_in_gbs = var.block_storage_sizes_in_gbs
-  shape                      = var.shape
   assign_public_ip           = var.assign_public_ip
+}
+
+# * This module will create a Flex Compute Instance, using values provided by the module: 1 OCPU, 1 GB memory.
+module "instance_flex_custom" {
+  source                      = "../../"
+  instance_count              = 2
+  shape                       = "VM.Standard.E3.Flex"
+  instance_flex_memory_in_gbs = 1
+  instance_flex_ocpus         = 1
+  ad_number                   = 1
+  compartment_ocid            = var.compartment_ocid
+  instance_display_name       = "instance_flex_custom"
+  source_ocid                 = var.source_ocid
+  subnet_ocids                = var.subnet_ocids
+  ssh_authorized_keys         = var.ssh_authorized_keys
+  block_storage_sizes_in_gbs  = var.block_storage_sizes_in_gbs
+  assign_public_ip            = var.assign_public_ip
+}
+
+# * This module will create a shape-based Compute Instance. OCPU and memory values are defined by the shape.
+module "instance_nonflex" {
+  source                     = "../../"
+  instance_count             = 1
+  shape                      = "VM.Standard2.1"
+  ad_number                  = 2
+  compartment_ocid           = var.compartment_ocid
+  instance_display_name      = "instance_nonflex"
+  source_ocid                = var.source_ocid
+  subnet_ocids               = var.subnet_ocids
+  ssh_authorized_keys        = var.ssh_authorized_keys
+  block_storage_sizes_in_gbs = var.block_storage_sizes_in_gbs
+  assign_public_ip           = var.assign_public_ip
+}
+
+# * This module will create a shape-based Compute instance. OCPU and memory values are defined by the shape.
+# * `instance_flex_memory_in_gbs` and ìnstance_flex_ocpus` values are ignored.
+module "instance_nonflex_custom" {
+  source                      = "../../"
+  instance_count              = 1
+  shape                       = "VM.Standard2.1"
+  instance_flex_memory_in_gbs = 8
+  instance_flex_ocpus         = 1
+  ad_number                   = 2
+  compartment_ocid            = var.compartment_ocid
+  instance_display_name       = "instance_nonflex_custom"
+  source_ocid                 = var.source_ocid
+  subnet_ocids                = var.subnet_ocids
+  ssh_authorized_keys         = var.ssh_authorized_keys
+  block_storage_sizes_in_gbs  = var.block_storage_sizes_in_gbs
+  assign_public_ip            = var.assign_public_ip
 }

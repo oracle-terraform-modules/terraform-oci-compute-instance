@@ -54,6 +54,18 @@ variable "shape" {
   default     = "VM.Standard2.1"
 }
 
+variable "instance_flex_memory_in_gbs" {
+  type        = number
+  description = "(Optional) (Updatable) The total amount of memory available to the instance, in gigabytes."
+  default     = null
+}
+
+variable "instance_flex_ocpus" {
+  type        = number
+  description = "(Optional) (Updatable) The total number of OCPUs available to the instance."
+  default     = null
+}
+
 variable "assign_public_ip" {
   description = "Whether the VNIC should be assigned a public IP address."
   type        = bool
