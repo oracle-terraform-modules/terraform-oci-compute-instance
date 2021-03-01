@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="170px" preserveAspectRatio="none" style="width:354px;height:170px;" version="1.1" viewBox="0 0 354 170" width="354px" zoomAndPan="magnify"><defs><filter height="300%" id="fu7jjiy8nverm" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FACD62" filter="url(#fu7jjiy8nverm)" height="44.5938" style="stroke:#312D2A;stroke-width:1.5;" width="116" x="7" y="112"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="74" x="28" y="127.9233">Terraform</text><line style="stroke:#312D2A;stroke-width:1.5;" x1="8" x2="122" y1="133.4609" y2="133.4609"/><text fill="#312D2A" font-family="menlo" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="104" x="13" y="149.5278">version &gt;= 0.12</text><rect fill="#94AFAF" filter="url(#fu7jjiy8nverm)" height="44.5938" style="stroke:#312D2A;stroke-width:1.5;" width="182" x="158" y="112"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="168" x="165" y="127.9233">OCI Terraform Provider</text><line style="stroke:#312D2A;stroke-width:1.5;" x1="159" x2="339" y1="133.4609" y2="133.4609"/><text fill="#312D2A" font-family="menlo" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="108" x="164" y="149.5278">version  &gt;= 3.27</text><rect fill="#759C6C" filter="url(#fu7jjiy8nverm)" height="44.5938" style="stroke:#312D2A;stroke-width:1.5;" width="161" x="76.5" y="7"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="147" x="83.5" y="22.9233">oci-compute Module</text><line style="stroke:#312D2A;stroke-width:1.5;" x1="77.5" x2="236.5" y1="28.4609" y2="28.4609"/><text fill="#312D2A" font-family="menlo" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="108" x="82.5" y="44.5278">version &gt;= 2.0.2</text><!--MD5=[1ed719e601daf2b08a4c1f70acdecc87]
+link tfmodule to tfprovider--><path codeLine="29" d="M176.7363,52.0251 C192.1534,69.6207 213.4896,93.9718 228.9789,111.6498 " fill="none" id="tfmodule-tfprovider" style="stroke:#312D2A;stroke-width:1.0;"/><!--MD5=[6238b5676e03c48777a4adf876c05dfe]
+link tfmodule to tf--><path codeLine="30" d="M137.2637,52.0251 C121.8466,69.6207 100.5104,93.9718 85.0211,111.6498 " fill="none" id="tfmodule-tf" style="stroke:#312D2A;stroke-width:1.0;"/><!--MD5=[5efe962f1535e504ac104a68a8f5d217]
+@startuml
+
+skinparam object {
+    FontColor #312D2A
+    BorderColor #312D2A
+    ArrowColor 312D2A
+    FontName "Oracle Sans"
+    FontSize 15
+}
+
+skinparam objectAttribute {
+    FontColor #312D2A
+    BorderColor #312D2A
+    FontName "menlo"
+    FontSize 13
+}
+
+object "Terraform" as tf #FACD62 {
+    version >= 0.12
+}
+
+object "OCI Terraform Provider" as tfprovider #94AFAF {
+    version  >= 3.27
+}
+
+object "oci-compute Module" as tfmodule #759C6C {
+    version >= 2.0.2
+}
+
+tfmodule -d- tfprovider
+tfmodule -d- tf
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 17:45:07 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="567px" preserveAspectRatio="none" style="width:1026px;height:567px;" version="1.1" viewBox="0 0 1026 567" width="1026px" zoomAndPan="magnify"><defs><filter height="300%" id="f1ed6znciltde4" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="290" x="368" y="28.708">How to submit your contribution</text><rect fill="#FCFBFA" height="513.1016" style="stroke:#312D2A;stroke-width:1.0;" width="289" x="1" y="40.9531"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="72.5" y="54.8765">Contribution Repo</text><rect fill="#FCFBFA" height="513.1016" style="stroke:#312D2A;stroke-width:1.0;" width="254" x="335" y="40.9531"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="127" x="398.5" y="54.8765">Your Fork Repo</text><rect fill="#FCFBFA" height="513.1016" style="stroke:#312D2A;stroke-width:1.0;" width="255.5" x="591" y="40.9531"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="191" x="623.25" y="54.8765">Your Fork's Clone Repo</text><line style="stroke:#C74733;stroke-width:1.0;" x1="79" x2="79" y1="124.4141" y2="302.9297"/><line style="stroke:#C74733;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="79" x2="79" y1="302.9297" y2="343.7344"/><line style="stroke:#C74733;stroke-width:1.0;" x1="79" x2="79" y1="343.7344" y2="560.0547"/><line style="stroke:#C74733;stroke-width:1.0;" x1="225" x2="225" y1="536.8242" y2="560.0547"/><line style="stroke:#C74733;stroke-width:1.0;" x1="312" x2="312" y1="124.4141" y2="302.9297"/><line style="stroke:#C74733;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="312" x2="312" y1="302.9297" y2="343.7344"/><line style="stroke:#C74733;stroke-width:1.0;" x1="312" x2="312" y1="343.7344" y2="560.0547"/><line style="stroke:#C74733;stroke-width:1.0;" x1="398" x2="398" y1="196.7773" y2="302.9297"/><line style="stroke:#C74733;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="398" x2="398" y1="302.9297" y2="343.7344"/><line style="stroke:#C74733;stroke-width:1.0;" x1="398" x2="398" y1="343.7344" y2="560.0547"/><line style="stroke:#C74733;stroke-width:1.0;" x1="526" x2="526" y1="490.3633" y2="560.0547"/><line style="stroke:#C74733;stroke-width:1.0;" x1="630" x2="630" y1="243.2383" y2="302.9297"/><line style="stroke:#C74733;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="630" x2="630" y1="302.9297" y2="343.7344"/><line style="stroke:#C74733;stroke-width:1.0;" x1="630" x2="630" y1="343.7344" y2="560.0547"/><line style="stroke:#C74733;stroke-width:1.0;" x1="806.5" x2="806.5" y1="289.6992" y2="302.9297"/><line style="stroke:#C74733;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="806.5" x2="806.5" y1="302.9297" y2="343.7344"/><line style="stroke:#C74733;stroke-width:1.0;" x1="806.5" x2="806.5" y1="343.7344" y2="560.0547"/><rect fill="#FACD62" filter="url(#f1ed6znciltde4)" height="31.4609" style="stroke:#312D2A;stroke-width:1.5;" width="145" x="5" y="87.9531"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="131" x="12" y="108.8765">Upstream/master</text><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="27" x="296" y="120.8765">You</text><ellipse cx="312.5" cy="49.9531" fill="#312D2A" filter="url(#f1ed6znciltde4)" rx="8" ry="8" style="stroke:#312D2A;stroke-width:2.0;"/><path d="M312.5,57.9531 L312.5,84.9531 M299.5,65.9531 L325.5,65.9531 M312.5,84.9531 L299.5,99.9531 M312.5,84.9531 L325.5,99.9531 " fill="none" filter="url(#f1ed6znciltde4)" style="stroke:#312D2A;stroke-width:2.0;"/><polygon fill="#008000" points="90.5,151.5469,80.5,155.5469,90.5,159.5469,86.5,155.5469" style="stroke:#008000;stroke-width:1.0;"/><line style="stroke:#008000;stroke-width:1.0;" x1="84.5" x2="311.5" y1="155.5469" y2="155.5469"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="189" x="96.5" y="150.481">Go to GitHub repo homepage</text><polygon fill="#008000" points="327,180.6797,337,184.6797,327,188.6797,331,184.6797" style="stroke:#008000;stroke-width:1.0;"/><line style="stroke:#008000;stroke-width:1.0;" x1="79.5" x2="333" y1="184.6797" y2="184.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="86.5" y="179.6138">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="109" x="99.5" y="179.6138">Fork from GitHub</text><rect fill="#759C6C" filter="url(#f1ed6znciltde4)" height="31.4609" style="stroke:#312D2A;stroke-width:1.5;" width="114" x="339" y="163.5469"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="100" x="346" y="184.4702">Origin/master</text><polygon fill="#008000" points="583,227.1406,593,231.1406,583,235.1406,587,231.1406" style="stroke:#008000;stroke-width:1.0;"/><line style="stroke:#008000;stroke-width:1.0;" x1="398" x2="589" y1="231.1406" y2="231.1406"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="405" y="226.0747">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="86" x="418" y="226.0747">Clone to local</text><rect fill="#94AEAF" filter="url(#f1ed6znciltde4)" height="31.4609" style="stroke:#312D2A;stroke-width:1.5;" width="67" x="595" y="210.0078"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="53" x="602" y="230.9312">master</text><polygon fill="#008000" points="759.5,273.6016,769.5,277.6016,759.5,281.6016,763.5,277.6016" style="stroke:#008000;stroke-width:1.0;"/><line style="stroke:#008000;stroke-width:1.0;" x1="630.5" x2="765.5" y1="277.6016" y2="277.6016"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="637.5" y="272.5356">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="104" x="650.5" y="272.5356">Create a Branch</text><rect fill="#94AEAF" filter="url(#f1ed6znciltde4)" height="31.4609" style="stroke:#312D2A;stroke-width:1.5;" width="67" x="771.5" y="256.4688"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="53" x="778.5" y="277.3921">feature</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="485" x="200.75" y="327.1401">start working on your own repo (Local &amp; Origin) until your feature is ready for review</text><polygon fill="#008000" points="795,360.8672,805,364.8672,795,368.8672,799,364.8672" style="stroke:#008000;stroke-width:1.0;"/><line style="stroke:#008000;stroke-width:1.0;" x1="312.5" x2="801" y1="364.8672" y2="364.8672"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="319.5" y="359.8013">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="210" x="332.5" y="359.8013">Develop new feature or fix issues</text><line style="stroke:#008000;stroke-width:1.0;" x1="807" x2="849" y1="394" y2="394"/><line style="stroke:#008000;stroke-width:1.0;" x1="849" x2="849" y1="394" y2="407"/><line style="stroke:#008000;stroke-width:1.0;" x1="808" x2="849" y1="407" y2="407"/><polygon fill="#008000" points="818,403,808,407,818,411,814,407" style="stroke:#008000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="814" y="388.9341">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="827" y="388.9341">Commit locally</text><line style="stroke:#008000;stroke-width:1.0;" x1="807" x2="849" y1="436.1328" y2="436.1328"/><line style="stroke:#008000;stroke-width:1.0;" x1="849" x2="849" y1="436.1328" y2="449.1328"/><line style="stroke:#008000;stroke-width:1.0;" x1="808" x2="849" y1="449.1328" y2="449.1328"/><polygon fill="#008000" points="818,445.1328,808,449.1328,818,453.1328,814,449.1328" style="stroke:#008000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="814" y="431.0669">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="192" x="827" y="431.0669">Rebase before push (optional)</text><polygon fill="#008000" points="596,474.2656,586,478.2656,596,482.2656,592,478.2656" style="stroke:#008000;stroke-width:1.0;"/><line style="stroke:#008000;stroke-width:1.0;" x1="590" x2="806" y1="478.2656" y2="478.2656"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="602" y="473.1997">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="108" x="615" y="473.1997">Push to your fork</text><rect fill="#759C6C" filter="url(#f1ed6znciltde4)" height="31.4609" style="stroke:#312D2A;stroke-width:1.5;" width="114" x="467" y="457.1328"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="100" x="474" y="478.0562">Origin/feature</text><polygon fill="#FFA500" points="297,520.7266,287,524.7266,297,528.7266,293,524.7266" style="stroke:#FFA500;stroke-width:1.0;"/><line style="stroke:#FFA500;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="291" x2="525" y1="524.7266" y2="524.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="303" y="519.6606">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="316" y="519.6606">Start a Pull Request</text><rect fill="#FACD62" filter="url(#f1ed6znciltde4)" height="31.4609" style="stroke:#312D2A;stroke-width:1.5;" width="118" x="164" y="503.5938"/><text fill="#312D2A" font-family="Oracle Sans" font-size="15" lengthAdjust="spacingAndGlyphs" textLength="104" x="171" y="524.5171">Upstream/dev</text><!--MD5=[b281d740a75d3f9cd8ee4bdef8c6a7da]
+@startuml
+title How to submit your contribution
+hide footbox
+
+skinparam sequence {
+ArrowColor #312D2A
+LifeLineBorderColor #c74733
+
+    Participant {
+        BorderColor #312D2A
+        BackgroundColor #94aeaf
+        FontName "Oracle Sans"
+        FontSize 15
+        FontColor #312D2A
+    }
+
+    Actor {
+        BorderColor #312D2A
+        BackgroundColor #312D2A
+        FontName "Oracle Sans"
+        FontSize 15
+        FontColor #312D2A
+    }
+
+    Box {
+        BorderColor #312D2A
+        BackgroundColor #fcfbfa
+        FontName "Oracle Sans"
+        FontSize 15
+        FontColor #312D2A
+    }
+}
+
+box "Contribution Repo"
+participant "Upstream/master" as upstream order 11 #FACD62
+participant "Upstream/dev" as upstream_dev order 12 #FACD62
+end box
+
+box "Your Fork Repo"
+participant "Origin/master" as orig order 21 #759C6C
+participant "Origin/feature" as orig_feat order 22 #759C6C
+end box
+box "Your Fork's Clone Repo"
+participant "master" as local order 30
+participant "feature" as local_feat order 31
+end box
+actor You order 20
+
+You -[#green]> upstream : Go to GitHub repo homepage
+autonumber
+create orig
+upstream -[#green]> orig : Fork from GitHub
+
+create local
+orig -[#green]> local : Clone to local
+create local_feat
+local -[#green]> local_feat : Create a Branch
+... start working on your own repo (Local & Origin) until your feature is ready for review ...
+You -[#green]> local_feat : Develop new feature or fix issues
+local_feat -[#green]> local_feat : Commit locally
+local_feat -[#green]> local_feat : Rebase before push (optional)
+create orig_feat
+local_feat -[#green]> orig_feat : Push to your fork
+create upstream_dev
+orig_feat -[#orange]-> upstream_dev : Start a Pull Request
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 17:45:07 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>
