@@ -1,0 +1,34 @@
+@startuml skinparam
+
+!startsub GLOBAL
+skinparam sequence {
+ArrowColor #312D2A
+LifeLineBorderColor #c74733
+
+    Participant {
+        BorderColor #312D2A
+        BackgroundColor #94aeaf
+        FontName "Oracle Sans"
+        FontSize 15
+        FontColor #312D2A
+    }
+
+    Actor {
+        BorderColor #312D2A
+        BackgroundColor #312D2A
+        FontName "Oracle Sans"
+        FontSize 15
+        FontColor #312D2A
+    }
+
+    Box {
+        BorderColor #312D2A
+        BackgroundColor #fcfbfa
+        FontName "Oracle Sans"
+        FontSize 15
+        FontColor #312D2A
+    }
+}
+!endsub GLOBAL
+
+@enduml

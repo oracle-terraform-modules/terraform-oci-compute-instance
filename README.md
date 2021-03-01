@@ -1,20 +1,45 @@
-# Oracle Cloud Infrastructure Compute Instance Terraform Module
+# Oracle Cloud Infrastructure Terraform Module for Compute Instance
 
-The Oracle Cloud Infrastructure Compute Instance Terraform Module provides an easy way to launch compute instances and optionally create and attach any number of block volumes.
+This Module provides an easy way to launch compute instances with advanced settings and good practices embedded.
 
-Please Note:
+On top of the compute instance capabilities, this module can also provision and attach additional Block Volumes to the instances.
 
-- Oracle-provided images include firewall rules that restrict access to the boot and block volumes. Oracle recommends that you do not use custom images without these rules unless you understand the security risks. See [Compute Best Practices](https://docs.cloud.oracle.com/iaas/Content/Compute/References/bestpracticescompute.htm#two) for recommendations on how to manage instances.
+**Please Note:**
 
-## Prerequisites
+> All Oracle-provided images include firewall rules that allow only "root" on Linux instances or "Administrators" on Windows Server instances to make outgoing connections to the iSCSI network endpoints (169.254.0.2:3260, 169.254.2.0/24:3260) that serve the instance's boot and block volumes.
+>
+> Oracle recommends that you do not use custom images without these rules unless you understand the security risks. See [Compute Best Practices](https://docs.cloud.oracle.com/iaas/Content/Compute/References/bestpracticescompute.htm#two) for recommendations on how to manage instances.
 
-See the [Oracle Cloud Infrastructure Terraform Provider docs](https://www.terraform.io/docs/providers/oci/index.html) for information about setting up and using the Oracle Cloud Infrastructure Terraform Provider.
+## Maintainers
+
+This module is maintained by Oracle.
+
+## Requirements
+
+The diagram below summarizes the required components and their respective versions to use this module.
+
+![versions](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/docs/diagrams/versions.svg?raw=true&sanitize=true)
+
+To enforce versions compatibility of both Terraform and the OCI provider, your root configuration should ideally include this block in `main.tf` for version pinning:
+
+```HCL
+terraform {
+  required_version = ">= 0.12"
+  required_providers {
+    oci = {
+      version = ">= 3.27"
+    }
+  }
+}
+```
+
+For detailed information about inputs and outputs, and potential sub-modules, see [docs/terraformoptions](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/docs/terraformoptions.adoc).
 
 ## How to use this module
 
-The [examples](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/tree/master/examples/instance_default) folder contains a detailed example that shows how to use this module.
+*See [Oracle Cloud Infrastructure documentation](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/terraformproviderconfiguration.htm) to get started with the Oracle Cloud Infrastructure Terraform Provider.*
 
-The following code example creates an Oracle Cloud Infrastructure compute instance:
+The [examples](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/tree/master/examples/) folder contains detailed examples that shows how to use this module. The following code example creates an Oracle Cloud Infrastructure compute instance on AD-1 with an additional Block Volume attached:
 
 ```hcl
 module "instance" {
@@ -27,68 +52,24 @@ module "instance" {
   subnet_ocids               = var.subnet_ocids
   assign_public_ip           = var.assign_public_ip
   ssh_authorized_keys        = var.ssh_authorized_keys_file
-  block_storage_sizes_in_gbs = [60, 70]
+  block_storage_sizes_in_gbs = [50]
   shape                      = var.shape
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
+## What's coming next for this module?
 
-| Name | Version |
-|------|---------|
-| terraform | >= 0.12 |
-| oci | >= 3.27 |
+The current focus is to get back in close the gap between this module and the provider's capabilities. We started with a complete code base update for [HCL2 syntax compatibility](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/releases/tag/v2.0.2), then adding support for [Regional Subnets](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/releases/tag/v2.0.4) and now [Flexible Shapes](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/pull/49).
 
-## Providers
+We will continue to push in that direction with the goal of [feature parity with the provider's capabilities](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/projects/4), as well as adding more features and integration points with other OCI services: Block Volume Backups, Secondary VNICs and IPs, etc ...
 
-| Name | Version |
-|------|---------|
-| oci | >= 3.27 |
+Compute Instances are also a perfect place to illustrate [module composition principles](https://www.terraform.io/docs/language/modules/develop/composition.html) reusing the other existing official Terraform OCI Modules
 
-## Inputs
+## Configuring iSCSI volume attachments
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| ad\_number | (Optional) The availability domain number of the instance. If none is provided, it will start with AD-1 and continue in round-robin. | `number` | `null` | no |
-| assign\_public\_ip | Whether the VNIC should be assigned a public IP address. | `bool` | `false` | no |
-| attachment\_type | (Optional) The type of volume. The only supported values are iscsi and paravirtualized. | `string` | `"paravirtualized"` | no |
-| block\_storage\_sizes\_in\_gbs | Sizes of volumes to create and attach to each instance. | `list(number)` | `[]` | no |
-| boot\_volume\_size\_in\_gbs | The size of the boot volume in GBs. | `number` | `null` | no |
-| compartment\_ocid | (Required) (Updatable) The OCID of the compartment where to create all resources | `string` | n/a | yes |
-| extended\_metadata | (Optional) (Updatable) Additional metadata key/value pairs that you provide. | `map(any)` | `{}` | no |
-| hostname\_label | The hostname for the VNIC's primary private IP. | `string` | `""` | no |
-| instance\_count | Number of instances to launch. | `number` | `1` | no |
-| instance\_display\_name | (Optional) (Updatable) A user-friendly name for the instance. Does not have to be unique, and it's changeable. | `string` | `""` | no |
-| instance\_flex\_memory\_in\_gbs | (Optional) (Updatable) The total amount of memory available to the instance, in gigabytes. | `number` | `null` | no |
-| instance\_flex\_ocpus | (Optional) (Updatable) The total number of OCPUs available to the instance. | `number` | `null` | no |
-| instance\_timeout | Timeout setting for creating instance. | `string` | `"25m"` | no |
-| ipxe\_script | (Optional) The iPXE script which to continue the boot process on the instance. | `string` | `null` | no |
-| preserve\_boot\_volume | Specifies whether to delete or preserve the boot volume when terminating an instance. | `bool` | `false` | no |
-| private\_ips | Private IP addresses of your choice to assign to the VNICs. | `list(string)` | `[]` | no |
-| resource\_platform | Platform to create resources in. | `string` | `"linux"` | no |
-| shape | The shape of an instance. | `string` | `"VM.Standard2.1"` | no |
-| skip\_source\_dest\_check | Whether the source/destination check is disabled on the VNIC. | `bool` | `false` | no |
-| source\_ocid | The OCID of an image or a boot volume to use, depending on the value of source\_type. | `string` | n/a | yes |
-| source\_type | The source type for the instance. | `string` | `"image"` | no |
-| ssh\_authorized\_keys | Public SSH keys path to be included in the ~/.ssh/authorized\_keys file for the default user on the instance. | `string` | n/a | yes |
-| subnet\_ocids | The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created. | `list(string)` | n/a | yes |
-| use\_chap | (Applicable when attachment\_type=iscsi) Whether to use CHAP authentication for the volume attachment. | `bool` | `false` | no |
-| user\_data | Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration. | `string` | `null` | no |
-| vnic\_name | A user-friendly name for the VNIC. | `string` | `""` | no |
+- For guidance configuring iSCSI on a Windows platform, see [Adding a Block Volume to a Windows Instance](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingstorageForWindows.htm).
 
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| instance\_id | ocid of created instances. |
-| instance\_password | Passwords to login to Windows instance. |
-| instance\_username | Usernames to login to Windows instance. |
-| instances\_summary | Private and Public IPs for each instance. |
-| private\_ip | Private IPs of created instances. |
-| public\_ip | Public IPs of created instances. |
-
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+- For guidance configuring iSCSI on a Linux platform, see [iSCSI Commands and Information](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm). See also this example of inline iSCSI commands execution using `iscsiadm` CLI called from terraform file: [instance.tf](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/compute/instance/instance.tf).
 
 ## Windows remote scripts execution
 
@@ -109,19 +90,13 @@ sc.exe config winrm start=auto
 net start winrm
 ```
 
-## Configure iSCSI volume attachments
-
-- For guidance configuring iSCSI on a Windows platform, see [Adding a Block Volume to a Windows Instance](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingstorageForWindows.htm).
-
-- For guidance configuring iSCSI on a Linux platform, see [iSCSI Commands and Information](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm). See also this example of inline iSCSI commands execution using `iscsiadm` CLI called from terraform file: [instance.tf](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/compute/instance/instance.tf).
-
 ## Contributing
 
-This project is open source. Oracle appreciates any contributions that are made by the open source community.
+This project is open source. Oracle appreciates any contributions that are made by the open source community: raising issues, improving documentation, fixing bugs, or adding new features.
 
-Learn how to [contribute](CONTRIBUTING.md).
+Learn how to [contribute](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/CONTRIBUTING.adoc).
 
-[Folks who contributed with explanations, code, feedback, ideas, testing etc.](CONTRIBUTORS.md)
+[Folks who contributed](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/CONTRIBUTORS.adoc) with explanations, code, feedback, ideas, testing etc.
 
 ## License
 
