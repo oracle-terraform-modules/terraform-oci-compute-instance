@@ -1,0 +1,210 @@
+== Requirements
+
+[cols="a,a",options="header,autowidth"]
+|===
+|Name |Version
+|terraform |>= 0.12
+|oci |>= 3.27
+|===
+
+== Providers
+
+[cols="a,a",options="header,autowidth"]
+|===
+|Name |Version
+|oci |>= 3.27
+|===
+
+== Modules
+
+No Modules.
+
+== Resources
+
+[cols="a",options="header,autowidth"]
+|===
+|Name
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_instance[oci_core_instance]
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials]
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_shapes[oci_core_shapes]
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnet[oci_core_subnet]
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume[oci_core_volume]
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_attachment[oci_core_volume_attachment]
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_availability_domains[oci_identity_availability_domains]
+|===
+
+== Inputs
+
+[cols="a,a,a,a,a",options="header,autowidth"]
+|===
+|Name |Description |Type |Default |Required
+|compartment_ocid
+|(Updatable) The OCID of the compartment where to create all resources
+|`string`
+|n/a
+|yes
+
+|source_ocid
+|The OCID of an image or a boot volume to use, depending on the value of source_type.
+|`string`
+|n/a
+|yes
+
+|ssh_authorized_keys
+|Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance.
+|`string`
+|n/a
+|yes
+
+|subnet_ocids
+|The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created.
+|`list(string)`
+|n/a
+|yes
+
+|ad_number
+|The availability domain number of the instance. If none is provided, it will start with AD-1 and continue in round-robin.
+|`number`
+|`null`
+|no
+
+|assign_public_ip
+|Whether the VNIC should be assigned a public IP address.
+|`bool`
+|`false`
+|no
+
+|attachment_type
+|(Optional) The type of volume. The only supported values are iscsi and paravirtualized.
+|`string`
+|`"paravirtualized"`
+|no
+
+|block_storage_sizes_in_gbs
+|Sizes of volumes to create and attach to each instance.
+|`list(number)`
+|`[]`
+|no
+
+|boot_volume_size_in_gbs
+|The size of the boot volume in GBs.
+|`number`
+|`null`
+|no
+
+|extended_metadata
+|(Updatable) Additional metadata key/value pairs that you provide.
+|`map(any)`
+|`{}`
+|no
+
+|hostname_label
+|The hostname for the VNIC's primary private IP.
+|`string`
+|`""`
+|no
+
+|instance_count
+|Number of identical instances to launch from a single module.
+|`number`
+|`1`
+|no
+
+|instance_display_name
+|(Updatable) A user-friendly name for the instance. Does not have to be unique, and it's changeable.
+|`string`
+|`""`
+|no
+
+|instance_flex_memory_in_gbs
+|(Updatable) The total amount of memory available to the instance, in gigabytes.
+|`number`
+|`null`
+|no
+
+|instance_flex_ocpus
+|(Updatable) The total number of OCPUs available to the instance.
+|`number`
+|`null`
+|no
+
+|instance_timeout
+|Timeout setting for creating instance.
+|`string`
+|`"25m"`
+|no
+
+|ipxe_script
+|(Optional) The iPXE script which to continue the boot process on the instance.
+|`string`
+|`null`
+|no
+
+|preserve_boot_volume
+|Specifies whether to delete or preserve the boot volume when terminating an instance.
+|`bool`
+|`false`
+|no
+
+|private_ips
+|Private IP addresses of your choice to assign to the VNICs.
+|`list(string)`
+|`[]`
+|no
+
+|resource_platform
+|Platform to create resources in.
+|`string`
+|`"linux"`
+|no
+
+|shape
+|The shape of an instance.
+|`string`
+|`"VM.Standard2.1"`
+|no
+
+|skip_source_dest_check
+|Whether the source/destination check is disabled on the VNIC.
+|`bool`
+|`false`
+|no
+
+|source_type
+|The source type for the instance.
+|`string`
+|`"image"`
+|no
+
+|use_chap
+|(Applicable when attachment_type=iscsi) Whether to use CHAP authentication for the volume attachment.
+|`bool`
+|`false`
+|no
+
+|user_data
+|Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration.
+|`string`
+|`null`
+|no
+
+|vnic_name
+|A user-friendly name for the VNIC.
+|`string`
+|`""`
+|no
+
+|===
+
+== Outputs
+
+[cols="a,a",options="header,autowidth"]
+|===
+|Name |Description
+|instance_id |ocid of created instances.
+|instance_password |Passwords to login to Windows instance.
+|instance_username |Usernames to login to Windows instance.
+|instances_summary |Private and Public IPs for each instance.
+|private_ip |Private IPs of created instances.
+|public_ip |Public IPs of created instances.
+|===

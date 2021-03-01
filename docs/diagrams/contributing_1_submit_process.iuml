@@ -1,0 +1,39 @@
+@startuml
+title How to submit your contribution
+hide footbox
+
+!includesub skinparam.puml!GLOBAL
+
+box "Contribution Repo"
+participant "Upstream/master" as upstream order 11 #FACD62
+participant "Upstream/dev" as upstream_dev order 12 #FACD62
+end box
+
+box "Your Fork Repo"
+participant "Origin/master" as orig order 21 #759C6C
+participant "Origin/feature" as orig_feat order 22 #759C6C
+end box
+box "Your Fork's Clone Repo"
+participant "master" as local order 30
+participant "feature" as local_feat order 31
+end box
+actor You order 20
+
+You -[#green]> upstream : Go to GitHub repo homepage
+autonumber
+create orig
+upstream -[#green]> orig : Fork from GitHub
+
+create local
+orig -[#green]> local : Clone to local
+create local_feat
+local -[#green]> local_feat : Create a Branch
+... start working on your own repo (Local & Origin) until your feature is ready for review ...
+You -[#green]> local_feat : Develop new feature or fix issues
+local_feat -[#green]> local_feat : Commit locally
+local_feat -[#green]> local_feat : Rebase before push (optional)
+create orig_feat
+local_feat -[#green]> orig_feat : Push to your fork
+create upstream_dev
+orig_feat -[#orange]-> upstream_dev : Start a Pull Request
+@enduml

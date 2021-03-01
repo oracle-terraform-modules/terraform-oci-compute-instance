@@ -10,7 +10,6 @@ repos:
     - id: terraform-validate
     # - id: terraform-fmt #* this version of tf-fmt detect problem and fails. You have to run tf fmt yourself
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.45.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  rev: v1.46.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
   hooks:
-    - id: terraform_docs
     - id: terraform_fmt #* this version of tf-fmt actually runs fmt and fix files

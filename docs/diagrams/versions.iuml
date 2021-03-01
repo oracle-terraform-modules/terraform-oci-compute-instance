@@ -1,0 +1,32 @@
+@startuml
+
+skinparam object {
+    FontColor #312D2A
+    BorderColor #312D2A
+    ArrowColor 312D2A
+    FontName "Oracle Sans"
+    FontSize 15
+}
+
+skinparam objectAttribute {
+    FontColor #312D2A
+    BorderColor #312D2A
+    FontName "menlo"
+    FontSize 13
+}
+
+object "Terraform" as tf #FACD62 {
+    version >= 0.12
+}
+
+object "OCI Terraform Provider" as tfprovider #94AFAF {
+    version  >= 3.27
+}
+
+object "oci-compute Module" as tfmodule #759C6C {
+    version >= 2.0.2
+}
+
+tfmodule -d- tfprovider
+tfmodule -d- tf
+@enduml

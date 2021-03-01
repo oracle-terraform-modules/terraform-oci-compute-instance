@@ -1,0 +1,34 @@
+# Copyright (c) 2019, 2020 Oracle Corporation and/or affiliates.  All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
+/*----------------------------------------------------------------------------
+HOW TO USE THIS FILE
+
+1. keep this file in the same folder as your terraform *.tf files
+2. If your terraform config is managed with Git, add the tfvars file to your .gitignore.
+3. Keep your RSA private key outside of your terraform work folder!
+----------------------------------------------------------------------------*/
+
+# provider identity parameters
+
+tenancy_ocid     = "<tenancy OCID>"
+user_ocid        = "<user OCID>"
+fingerprint      = "<PEM key fingerprint>"
+region           = "<region in which to operate, example: us-ashburn-1, eu-frankfurt-1>"
+private_key_path = "<path to the private key that matches the fingerprint above>"
+
+# general oci parameters
+
+compartment_ocid = "<compartment OCID>"
+
+# compute instance parameters
+
+source_ocid  = "<The OCID of an image or a boot volume>"
+
+# operating system parameters
+
+ssh_authorized_keys = "<path to the instance's public key>"
+
+# networking parameters
+
+subnet_ocids = ["<a list of the subnet OCIDs which to create the VNICs in>"]
