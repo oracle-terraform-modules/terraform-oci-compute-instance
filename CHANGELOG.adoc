@@ -14,6 +14,13 @@ Given a version number MAJOR.MINOR.PATCH:
 * MINOR version when adding functionality in a backwards compatible manner,
 * PATCH version when making backwards compatible bug fixes.
 
+== 2.2.0 - unreleased
+
+=== New features
+
+* Add support for freeform and defined for instances, vnics and block volumes (Fix #10, #11, #12, #13, #18, #20)
+* Add "module watermark" freeform tags: module defined and user defined freeform tags are merged on the final resource.
+
 == 2.1.0 - 2021-03-02
 
 === New features

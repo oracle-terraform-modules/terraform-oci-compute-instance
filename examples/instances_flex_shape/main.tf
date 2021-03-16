@@ -23,6 +23,8 @@ module "instance_flex" {
   source = "oracle-terraform-modules/compute-instance/oci"
   # general oci parameters
   compartment_ocid = var.compartment_ocid
+  freeform_tags    = var.freeform_tags
+  defined_tags     = var.defined_tags
   # compute instance parameters
   ad_number             = var.instance_ad_number
   instance_count        = var.instance_count
@@ -49,6 +51,8 @@ module "instance_flex_custom" {
   source = "oracle-terraform-modules/compute-instance/oci"
   # general oci parameters
   compartment_ocid = var.compartment_ocid
+  freeform_tags    = var.freeform_tags
+  defined_tags     = var.defined_tags
   # compute instance parameters
   ad_number                   = null
   instance_count              = 4

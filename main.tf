@@ -84,6 +84,9 @@ resource "oci_core_instance" "this" {
     skip_source_dest_check = var.skip_source_dest_check
     // Current implementation requires providing a list of subnets when using ad-specific subnets
     subnet_id = data.oci_core_subnet.this[count.index % length(data.oci_core_subnet.this.*.id)].id
+
+    freeform_tags = local.merged_freeform_tags
+    defined_tags  = var.defined_tags
   }
 
   metadata = {
@@ -96,6 +99,9 @@ resource "oci_core_instance" "this" {
     source_id               = var.source_ocid
     source_type             = var.source_type
   }
+
+  freeform_tags = local.merged_freeform_tags
+  defined_tags  = var.defined_tags
 
   timeouts {
     create = var.instance_timeout
@@ -122,6 +128,8 @@ resource "oci_core_volume" "this" {
     var.block_storage_sizes_in_gbs,
     floor(count.index / var.instance_count),
   )
+  freeform_tags = local.merged_freeform_tags
+  defined_tags  = var.defined_tags
 }
 
 ####################
