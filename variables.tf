@@ -13,6 +13,27 @@ variable "instance_timeout" {
   default     = "25m"
 }
 
+variable "freeform_tags" {
+  description = "simple key-value pairs to tag the resources created using freeform tags."
+  type        = map(string)
+  default     = null
+}
+
+variable "defined_tags" {
+  description = "predefined and scoped to a namespace to tag the resources created using defined tags."
+  type        = map(string)
+  default     = null
+}
+
+locals {
+  default_freeform_tags = {
+    # * This list of freeform tags are added by default to user provided freeform tags (var.freeform_tags) if local.merged_freeform_tags is used
+    terraformed = "Please do not edit manually"
+    module      = "oracle-terraform-modules/compute-instance/oci"
+  }
+  merged_freeform_tags = merge(local.default_freeform_tags, var.freeform_tags)
+}
+
 # compute instance parameters
 
 variable "ad_number" {
