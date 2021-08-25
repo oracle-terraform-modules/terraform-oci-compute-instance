@@ -107,6 +107,18 @@ variable "source_type" {
 variable "ssh_authorized_keys" {
   description = "Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance."
   type        = string
+  default     = null
+}
+
+variable "ssh_public_key" {
+  description = "The content of the ssh public key used to access the compute instance. Set this, or ssh_public_key_path to add multiple keys at once."
+  type        = string
+  default     = null
+}
+variable "ssh_public_key_path" {
+  description = "Path to file containing one or more ssh public keys used to access the compute instance. One key per line. Set this or the ssh_public_key."
+  type        = string
+  default     = null
 }
 
 # networking parameters
@@ -129,12 +141,3 @@ variable "block_storage_sizes_in_gbs" {
   type        = list(string)
   default     = [50]
 }
-
-
-
-
-
-
-
-
-

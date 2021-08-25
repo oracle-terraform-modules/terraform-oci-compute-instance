@@ -24,7 +24,7 @@ object "OCI Terraform Provider" as tfprovider #94AFAF {
 }
 
 object "oci-compute Module" as tfmodule #759C6C {
-    version >= 2.0.2
+    version >= 2.2.0
 }
 
 tfmodule -d- tfprovider
