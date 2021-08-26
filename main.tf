@@ -74,7 +74,7 @@ resource "oci_core_instance" "this" {
   }
 
   create_vnic_details {
-    assign_public_ip = var.assign_public_ip
+    assign_public_ip = var.public_ip == null ? var.assign_public_ip : false
     display_name     = var.vnic_name == "" ? "" : var.instance_count != "1" ? "${var.vnic_name}_${count.index + 1}" : var.vnic_name
     hostname_label   = var.hostname_label == "" ? "" : var.instance_count != "1" ? "${var.hostname_label}-${count.index + 1}" : var.hostname_label
     private_ip = element(
@@ -143,3 +143,39 @@ resource "oci_core_volume_attachment" "this" {
   use_chap        = var.use_chap
 }
 
+####################
+# Networking
+####################
+
+data "oci_core_vnic_attachments" "this" {
+  #Required
+  compartment_id = var.compartment_ocid
+
+  #Optional
+  instance_id = oci_core_instance.this[0].id
+
+  depends_on = [
+    oci_core_instance.this
+  ]
+}
+
+data "oci_core_private_ips" "this" {
+  vnic_id = data.oci_core_vnic_attachments.this.vnic_attachments[0].vnic_id
+
+  depends_on = [
+  oci_core_instance.this
+]
+}
+
+# resource "oci_core_public_ip" "this" {
+#   count = (var.assign_public_ip == true && var.public_ip == true) ? 1 : 0
+#   compartment_id = var.compartment_ocid
+#   lifetime =  "RESERVED"
+
+#   # display_name = var.public_ip_display_name
+#   private_ip_id = data.oci_core_private_ips.this.private_ips[0].id
+#   # public_ip_pool_id = oci_core_public_ip_pool.test_public_ip_pool.id
+
+#   freeform_tags = local.merged_freeform_tags
+#   defined_tags = var.defined_tags
+#   }

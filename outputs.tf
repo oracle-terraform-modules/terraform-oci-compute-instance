@@ -41,3 +41,36 @@ output "instance_password" {
   sensitive   = true
   value       = data.oci_core_instance_credentials.this.*.password
 }
+
+# New complete outputs for each resources with provider parity. Auto-updating.
+# Usefull for module composition.
+
+output "instance_all_attributes" {
+  description = "all attributes of created instance"
+  value       = { for k, v in oci_core_instance.this : k => v }
+}
+
+# output "public_ip_all_attributes" {
+#   description = "all attributes of created instance"
+#   value       = { for k, v in oci_core_public_ip.this : k => v }
+# }
+
+output "vnic_attachment_all_attributes" {
+  description = "all attributes of created vnic attachments"
+  value       = { for k, v in data.oci_core_vnic_attachments.this : k => v }
+}
+
+output "private_ips_all_attributes" {
+  description = "all attributes of created private ips"
+  value       = { for k, v in data.oci_core_private_ips.this : k => v }
+}
+
+output "volume_all_attributes" {
+  description = "all attributes of created volumes"
+  value       = { for k, v in oci_core_volume.this : k => v }
+}
+
+output "volume_attachment_all_attributes" {
+  description = "all attributes of created volumes attachments"
+  value       = { for k, v in oci_core_volume_attachment.this : k => v }
+}

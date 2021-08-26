@@ -13,7 +13,8 @@ You will need to collect the following information before you start:
 
 1. your OCI provider authentication values
 2. a compartment OCID in which the instances will be created
-3. a subnet OCID to which the instance's primary VNICs will be attached
+3. a source OCID to deploy the instance, usually an image ocid from [OCI Platform Images list]
+4. a subnet OCID to which the instance's primary VNICs will be attached
 
 For detailed instructions, see [docs/prerequisites.adoc]
 
@@ -33,3 +34,5 @@ Then apply the example using the following commands:
 
 [Terraform Variable Definition file]:https://www.terraform.io/docs/language/values/variables.html#variable-definitions-tfvars-files
 [docs/prerequisites.adoc]:https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/main/docs/prerequisites.adoc
+[Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
+[OCI Platform Images list]:https://docs.oracle.com/en-us/iaas/images/

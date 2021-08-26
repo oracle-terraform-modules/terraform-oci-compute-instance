@@ -126,6 +126,7 @@ variable "user_data" {
 # networking parameters
 
 variable "assign_public_ip" {
+  #! Deprecation notice: will be removed at next major release. Use "create_public_ip" instead.
   description = "Whether the VNIC should be assigned a public IP address."
   type        = bool
   default     = false
@@ -147,6 +148,12 @@ variable "private_ips" {
   description = "Private IP addresses of your choice to assign to the VNICs."
   type        = list(string)
   default     = []
+}
+
+variable "public_ip" {
+  description = "OCID of the Public IP to attach to primary vnic."
+  type = string
+  default = null
 }
 
 variable "skip_source_dest_check" {
