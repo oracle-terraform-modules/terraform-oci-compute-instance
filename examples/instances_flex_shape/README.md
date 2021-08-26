@@ -5,7 +5,7 @@ This example illustrates how to use this module to creates compute instances usi
 Two modules will be configured:
 
 - the first module will create 1 instance (1 OCPU, 16GB RAM) with 1 Block Volume (50GB) attached to it
-- the second module will create 4 instances (1 OCUP, 1GB RAM) with no additional Block Volume
+- the second module, if uncommented,  will create 4 instances (1 OCUP, 1GB RAM) with no additional Block Volume
 
 ## Prerequisites
 
@@ -32,4 +32,4 @@ Then apply the example using the following commands:
 ```
 
 [Terraform Variable Definition file]:https://www.terraform.io/docs/language/values/variables.html#variable-definitions-tfvars-files
-[docs/prerequisites.adoc]:https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/docs/prerequisites.adoc
+[docs/prerequisites.adoc]:https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/main/docs/prerequisites.adoc

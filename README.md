@@ -18,7 +18,7 @@ This module is maintained by Oracle.
 
 The diagram below summarizes the required components and their respective versions to use this module.
 
-![versions](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/docs/diagrams/versions.svg?raw=true&sanitize=true)
+![versions](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/main/docs/diagrams/versions.svg?raw=true&sanitize=true)
 
 To enforce versions compatibility of both Terraform and the OCI provider, your root configuration should ideally include this block in `main.tf` for version pinning:
 
@@ -33,13 +33,13 @@ terraform {
 }
 ```
 
-For detailed information about inputs and outputs, and potential sub-modules, see [docs/terraformoptions](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/docs/terraformoptions.adoc).
+For detailed information about inputs and outputs, and potential sub-modules, see [docs/terraformoptions](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/main/docs/terraformoptions.adoc).
 
 ## How to use this module
 
 *See [Oracle Cloud Infrastructure documentation](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/terraformproviderconfiguration.htm) to get started with the Oracle Cloud Infrastructure Terraform Provider.*
 
-The [examples](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/tree/master/examples/) folder contains detailed examples that shows how to use this module. The following code example creates an Oracle Cloud Infrastructure compute instance on AD-1 with an additional Block Volume attached:
+The [examples](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/tree/main/examples/) folder contains detailed examples that shows how to use this module. The following code example creates an Oracle Cloud Infrastructure compute instance on AD-1 with an additional Block Volume attached:
 
 ```hcl
 module "instance" {
@@ -94,9 +94,9 @@ net start winrm
 
 This project is open source. Oracle appreciates any contributions that are made by the open source community: raising issues, improving documentation, fixing bugs, or adding new features.
 
-Learn how to [contribute](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/CONTRIBUTING.adoc).
+Learn how to [contribute](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/main/CONTRIBUTING.adoc).
 
-[Folks who contributed](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/CONTRIBUTORS.adoc) with explanations, code, feedback, ideas, testing etc.
+[Folks who contributed](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/main/CONTRIBUTORS.adoc) with explanations, code, feedback, ideas, testing etc.
 
 ## License
 
@@ -104,4 +104,4 @@ Copyright (c) 2021, Oracle and/or its affiliates. All rights reserved.
 
 Licensed under the Universal Permissive License 1.0 or Apache License 2.0.
 
-See [LICENSE](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/master/LICENSE.txt) for more details.
+See [LICENSE](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/main/LICENSE.txt) for more details.

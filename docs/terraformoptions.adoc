@@ -3,8 +3,8 @@
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|terraform |>= 0.12
-|oci |>= 3.27
+|[[requirement_terraform]] <<requirement_terraform,terraform>> |>= 0.12
+|[[requirement_oci]] <<requirement_oci,oci>> |>= 3.27
 |===
 
 == Providers
@@ -12,25 +12,25 @@
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|oci |>= 3.27
+|[[provider_oci]] <<provider_oci,oci>> |>= 3.27
 |===
 
 == Modules
 
-No Modules.
+No modules.
 
 == Resources
 
-[cols="a",options="header,autowidth"]
+[cols="a,a",options="header,autowidth"]
 |===
-|Name
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_instance[oci_core_instance]
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials]
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_shapes[oci_core_shapes]
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnet[oci_core_subnet]
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume[oci_core_volume]
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_attachment[oci_core_volume_attachment]
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_availability_domains[oci_identity_availability_domains]
+|Name |Type
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_instance[oci_core_instance.this] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume[oci_core_volume.this] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_attachment[oci_core_volume_attachment.this] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials.this] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_shapes[oci_core_shapes.ad1] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnet[oci_core_subnet.this] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_availability_domains[oci_identity_availability_domains.ad] |data source
 |===
 
 == Inputs
@@ -38,157 +38,181 @@ No Modules.
 [cols="a,a,a,a,a",options="header,autowidth"]
 |===
 |Name |Description |Type |Default |Required
-|compartment_ocid
-|(Updatable) The OCID of the compartment where to create all resources
-|`string`
-|n/a
-|yes
-
-|source_ocid
-|The OCID of an image or a boot volume to use, depending on the value of source_type.
-|`string`
-|n/a
-|yes
-
-|ssh_authorized_keys
-|Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance.
-|`string`
-|n/a
-|yes
-
-|subnet_ocids
-|The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created.
-|`list(string)`
-|n/a
-|yes
-
-|ad_number
+|[[input_ad_number]] <<input_ad_number,ad_number>>
 |The availability domain number of the instance. If none is provided, it will start with AD-1 and continue in round-robin.
 |`number`
 |`null`
 |no
 
-|assign_public_ip
+|[[input_assign_public_ip]] <<input_assign_public_ip,assign_public_ip>>
 |Whether the VNIC should be assigned a public IP address.
 |`bool`
 |`false`
 |no
 
-|attachment_type
+|[[input_attachment_type]] <<input_attachment_type,attachment_type>>
 |(Optional) The type of volume. The only supported values are iscsi and paravirtualized.
 |`string`
 |`"paravirtualized"`
 |no
 
-|block_storage_sizes_in_gbs
+|[[input_block_storage_sizes_in_gbs]] <<input_block_storage_sizes_in_gbs,block_storage_sizes_in_gbs>>
 |Sizes of volumes to create and attach to each instance.
 |`list(number)`
 |`[]`
 |no
 
-|boot_volume_size_in_gbs
+|[[input_boot_volume_size_in_gbs]] <<input_boot_volume_size_in_gbs,boot_volume_size_in_gbs>>
 |The size of the boot volume in GBs.
 |`number`
 |`null`
 |no
 
-|extended_metadata
+|[[input_compartment_ocid]] <<input_compartment_ocid,compartment_ocid>>
+|(Updatable) The OCID of the compartment where to create all resources
+|`string`
+|n/a
+|yes
+
+|[[input_defined_tags]] <<input_defined_tags,defined_tags>>
+|predefined and scoped to a namespace to tag the resources created using defined tags.
+|`map(string)`
+|`null`
+|no
+
+|[[input_extended_metadata]] <<input_extended_metadata,extended_metadata>>
 |(Updatable) Additional metadata key/value pairs that you provide.
 |`map(any)`
 |`{}`
 |no
 
-|hostname_label
+|[[input_freeform_tags]] <<input_freeform_tags,freeform_tags>>
+|simple key-value pairs to tag the resources created using freeform tags.
+|`map(string)`
+|`null`
+|no
+
+|[[input_hostname_label]] <<input_hostname_label,hostname_label>>
 |The hostname for the VNIC's primary private IP.
 |`string`
 |`""`
 |no
 
-|instance_count
+|[[input_instance_count]] <<input_instance_count,instance_count>>
 |Number of identical instances to launch from a single module.
 |`number`
 |`1`
 |no
 
-|instance_display_name
+|[[input_instance_display_name]] <<input_instance_display_name,instance_display_name>>
 |(Updatable) A user-friendly name for the instance. Does not have to be unique, and it's changeable.
 |`string`
 |`""`
 |no
 
-|instance_flex_memory_in_gbs
+|[[input_instance_flex_memory_in_gbs]] <<input_instance_flex_memory_in_gbs,instance_flex_memory_in_gbs>>
 |(Updatable) The total amount of memory available to the instance, in gigabytes.
 |`number`
 |`null`
 |no
 
-|instance_flex_ocpus
+|[[input_instance_flex_ocpus]] <<input_instance_flex_ocpus,instance_flex_ocpus>>
 |(Updatable) The total number of OCPUs available to the instance.
 |`number`
 |`null`
 |no
 
-|instance_timeout
+|[[input_instance_timeout]] <<input_instance_timeout,instance_timeout>>
 |Timeout setting for creating instance.
 |`string`
 |`"25m"`
 |no
 
-|ipxe_script
+|[[input_ipxe_script]] <<input_ipxe_script,ipxe_script>>
 |(Optional) The iPXE script which to continue the boot process on the instance.
 |`string`
 |`null`
 |no
 
-|preserve_boot_volume
+|[[input_preserve_boot_volume]] <<input_preserve_boot_volume,preserve_boot_volume>>
 |Specifies whether to delete or preserve the boot volume when terminating an instance.
 |`bool`
 |`false`
 |no
 
-|private_ips
+|[[input_private_ips]] <<input_private_ips,private_ips>>
 |Private IP addresses of your choice to assign to the VNICs.
 |`list(string)`
 |`[]`
 |no
 
-|resource_platform
+|[[input_resource_platform]] <<input_resource_platform,resource_platform>>
 |Platform to create resources in.
 |`string`
 |`"linux"`
 |no
 
-|shape
+|[[input_shape]] <<input_shape,shape>>
 |The shape of an instance.
 |`string`
 |`"VM.Standard2.1"`
 |no
 
-|skip_source_dest_check
+|[[input_skip_source_dest_check]] <<input_skip_source_dest_check,skip_source_dest_check>>
 |Whether the source/destination check is disabled on the VNIC.
 |`bool`
 |`false`
 |no
 
-|source_type
+|[[input_source_ocid]] <<input_source_ocid,source_ocid>>
+|The OCID of an image or a boot volume to use, depending on the value of source_type.
+|`string`
+|n/a
+|yes
+
+|[[input_source_type]] <<input_source_type,source_type>>
 |The source type for the instance.
 |`string`
 |`"image"`
 |no
 
-|use_chap
+|[[input_ssh_authorized_keys]] <<input_ssh_authorized_keys,ssh_authorized_keys>>
+|DEPRECATED: use ssh_public_key or ssh_public_key_path instead. Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance.
+|`string`
+|`null`
+|no
+
+|[[input_ssh_public_key]] <<input_ssh_public_key,ssh_public_key>>
+|The content of the ssh public key used to access the compute instance. Set this, or ssh_public_key_path to add multiple keys at once.
+|`string`
+|`null`
+|no
+
+|[[input_ssh_public_key_path]] <<input_ssh_public_key_path,ssh_public_key_path>>
+|Path to file containing one or more ssh public keys used to access the compute instance. One key per line. Set this or the ssh_public_key.
+|`string`
+|`null`
+|no
+
+|[[input_subnet_ocids]] <<input_subnet_ocids,subnet_ocids>>
+|The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created.
+|`list(string)`
+|n/a
+|yes
+
+|[[input_use_chap]] <<input_use_chap,use_chap>>
 |(Applicable when attachment_type=iscsi) Whether to use CHAP authentication for the volume attachment.
 |`bool`
 |`false`
 |no
 
-|user_data
+|[[input_user_data]] <<input_user_data,user_data>>
 |Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration.
 |`string`
 |`null`
 |no
 
-|vnic_name
+|[[input_vnic_name]] <<input_vnic_name,vnic_name>>
 |A user-friendly name for the VNIC.
 |`string`
 |`""`
@@ -201,10 +225,10 @@ No Modules.
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Description
-|instance_id |ocid of created instances.
-|instance_password |Passwords to login to Windows instance.
-|instance_username |Usernames to login to Windows instance.
-|instances_summary |Private and Public IPs for each instance.
-|private_ip |Private IPs of created instances.
-|public_ip |Public IPs of created instances.
+|[[output_instance_id]] <<output_instance_id,instance_id>> |ocid of created instances.
+|[[output_instance_password]] <<output_instance_password,instance_password>> |Passwords to login to Windows instance.
+|[[output_instance_username]] <<output_instance_username,instance_username>> |Usernames to login to Windows instance.
+|[[output_instances_summary]] <<output_instances_summary,instances_summary>> |Private and Public IPs for each instance.
+|[[output_private_ip]] <<output_private_ip,private_ip>> |Private IPs of created instances.
+|[[output_public_ip]] <<output_public_ip,public_ip>> |Public IPs of created instances.
 |===
