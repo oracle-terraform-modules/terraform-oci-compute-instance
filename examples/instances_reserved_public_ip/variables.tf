@@ -111,16 +111,10 @@ variable "ssh_authorized_keys" {
 
 # networking parameters
 
-variable "assign_public_ip" {
-  description = "Whether the VNIC should be assigned a public IP address."
-  type        = bool
-  default     = false
-}
-
 variable "public_ip" {
   description = "OCID of the Public IP to attach to primary vnic."
   type        = string
-  default     = null
+  default     = "NONE"
 }
 
 variable "subnet_ocids" {

@@ -148,11 +148,9 @@ resource "oci_core_volume_attachment" "this" {
 ####################
 
 data "oci_core_vnic_attachments" "this" {
-  #Required
+  count          = var.instance_count
   compartment_id = var.compartment_ocid
-
-  #Optional
-  instance_id = oci_core_instance.this[0].id
+  instance_id    = oci_core_instance.this[count.index].id
 
   depends_on = [
     oci_core_instance.this
@@ -160,22 +158,23 @@ data "oci_core_vnic_attachments" "this" {
 }
 
 data "oci_core_private_ips" "this" {
-  vnic_id = data.oci_core_vnic_attachments.this.vnic_attachments[0].vnic_id
+  count   = var.instance_count
+  vnic_id = data.oci_core_vnic_attachments.this[count.index].vnic_attachments[0].vnic_id
 
   depends_on = [
-  oci_core_instance.this
-]
+    oci_core_instance.this
+  ]
 }
 
-# resource "oci_core_public_ip" "this" {
-#   count = (var.assign_public_ip == true && var.public_ip == true) ? 1 : 0
-#   compartment_id = var.compartment_ocid
-#   lifetime =  "RESERVED"
+resource "oci_core_public_ip" "this" {
+  count          = var.public_ip == "NONE" ? 0 : var.instance_count
+  compartment_id = var.compartment_ocid
+  lifetime       = var.public_ip
 
-#   # display_name = var.public_ip_display_name
-#   private_ip_id = data.oci_core_private_ips.this.private_ips[0].id
-#   # public_ip_pool_id = oci_core_public_ip_pool.test_public_ip_pool.id
+  display_name  = var.public_ip_display_name != null ? var.public_ip_display_name : oci_core_instance.this[count.index].display_name
+  private_ip_id = data.oci_core_private_ips.this[count.index].private_ips[0].id
+  # public_ip_pool_id = oci_core_public_ip_pool.test_public_ip_pool.id # * (BYOIP CIDR Blocks) are not supported yet by this module.
 
-#   freeform_tags = local.merged_freeform_tags
-#   defined_tags = var.defined_tags
-#   }
+  freeform_tags = local.merged_freeform_tags
+  defined_tags  = var.defined_tags
+}

@@ -25,11 +25,14 @@ No modules.
 |===
 |Name |Type
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_instance[oci_core_instance.this] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_public_ip[oci_core_public_ip.this] |resource
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume[oci_core_volume.this] |resource
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_attachment[oci_core_volume_attachment.this] |resource
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials.this] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_private_ips[oci_core_private_ips.this] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_shapes[oci_core_shapes.ad1] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnet[oci_core_subnet.this] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_vnic_attachments[oci_core_vnic_attachments.this] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_availability_domains[oci_identity_availability_domains.ad] |data source
 |===
 
@@ -45,7 +48,7 @@ No modules.
 |no
 
 |[[input_assign_public_ip]] <<input_assign_public_ip,assign_public_ip>>
-|Whether the VNIC should be assigned a public IP address.
+|Deprecated: use `var.public_ip` instead. Whether the VNIC should be assigned a public IP address (Always EPHEMERAL).
 |`bool`
 |`false`
 |no
@@ -146,6 +149,18 @@ No modules.
 |`[]`
 |no
 
+|[[input_public_ip]] <<input_public_ip,public_ip>>
+|OCID of the Public IP to attach to primary vnic. Valid values are NONE, RESERVED or EPHEMERAL.
+|`string`
+|`"NONE"`
+|no
+
+|[[input_public_ip_display_name]] <<input_public_ip_display_name,public_ip_display_name>>
+|(Updatable) A user-friendly name. Does not have to be unique, and it's changeable.
+|`string`
+|`null`
+|no
+
 |[[input_resource_platform]] <<input_resource_platform,resource_platform>>
 |Platform to create resources in.
 |`string`
@@ -219,10 +234,16 @@ No modules.
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Description
+|[[output_instance_all_attributes]] <<output_instance_all_attributes,instance_all_attributes>> |all attributes of created instance
 |[[output_instance_id]] <<output_instance_id,instance_id>> |ocid of created instances.
 |[[output_instance_password]] <<output_instance_password,instance_password>> |Passwords to login to Windows instance.
 |[[output_instance_username]] <<output_instance_username,instance_username>> |Usernames to login to Windows instance.
 |[[output_instances_summary]] <<output_instances_summary,instances_summary>> |Private and Public IPs for each instance.
 |[[output_private_ip]] <<output_private_ip,private_ip>> |Private IPs of created instances.
+|[[output_private_ips_all_attributes]] <<output_private_ips_all_attributes,private_ips_all_attributes>> |all attributes of created private ips
 |[[output_public_ip]] <<output_public_ip,public_ip>> |Public IPs of created instances.
+|[[output_public_ip_all_attributes]] <<output_public_ip_all_attributes,public_ip_all_attributes>> |all attributes of created public ip
+|[[output_vnic_attachment_all_attributes]] <<output_vnic_attachment_all_attributes,vnic_attachment_all_attributes>> |all attributes of created vnic attachments
+|[[output_volume_all_attributes]] <<output_volume_all_attributes,volume_all_attributes>> |all attributes of created volumes
+|[[output_volume_attachment_all_attributes]] <<output_volume_attachment_all_attributes,volume_attachment_all_attributes>> |all attributes of created volumes attachments
 |===

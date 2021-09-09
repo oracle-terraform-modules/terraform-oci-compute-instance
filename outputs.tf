@@ -50,19 +50,19 @@ output "instance_all_attributes" {
   value       = { for k, v in oci_core_instance.this : k => v }
 }
 
-# output "public_ip_all_attributes" {
-#   description = "all attributes of created instance"
-#   value       = { for k, v in oci_core_public_ip.this : k => v }
-# }
-
-output "vnic_attachment_all_attributes" {
-  description = "all attributes of created vnic attachments"
-  value       = { for k, v in data.oci_core_vnic_attachments.this : k => v }
+output "public_ip_all_attributes" {
+  description = "all attributes of created public ip"
+  value       = { for k, v in oci_core_public_ip.this : k => v }
 }
 
 output "private_ips_all_attributes" {
   description = "all attributes of created private ips"
   value       = { for k, v in data.oci_core_private_ips.this : k => v }
+}
+
+output "vnic_attachment_all_attributes" {
+  description = "all attributes of created vnic attachments"
+  value       = { for k, v in data.oci_core_vnic_attachments.this : k => v }
 }
 
 output "volume_all_attributes" {

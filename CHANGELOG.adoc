@@ -19,6 +19,7 @@ Given a version number MAJOR.MINOR.PATCH:
 === Deprecated
 
 * `var.ssh_authorized_keys` is deprecated. Use `var.ssh_public_keys`.
+* `var.assign_public_ip` is deprecated. Use `var.public_ip` with the predefined keywords instead.
 
 === New features
 

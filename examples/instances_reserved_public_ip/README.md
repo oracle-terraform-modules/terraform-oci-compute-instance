@@ -4,7 +4,7 @@ This example illustrates how to use this module to creates compute instances wit
 
 One modules will be configured:
 
-- 1 instance (1 OCPU, 1GB RAM) with a reserved public IP attached the primary VNIC.
+- 1 instance (1 OCPU, 1GB RAM) with a reserved public IP associated with the Primary IP of the primary VNIC.
 
 ## Prerequisites
 
