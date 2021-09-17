@@ -104,9 +104,10 @@ variable "source_type" {
 
 # operating system parameters
 
-variable "ssh_authorized_keys" {
-  description = "Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance."
+variable "ssh_public_keys" {
+  description = "Public SSH keys to be included in the ~/.ssh/authorized_keys file for the default user on the instance. To provide multiple keys, see docs/instance_ssh_keys.adoc."
   type        = string
+  default     = null
 }
 
 # networking parameters
@@ -129,12 +130,3 @@ variable "block_storage_sizes_in_gbs" {
   type        = list(string)
   default     = [50]
 }
-
-
-
-
-
-
-
-
-

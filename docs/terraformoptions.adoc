@@ -12,7 +12,7 @@
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[provider_oci]] <<provider_oci,oci>> |>= 3.27
+|[[provider_oci]] <<provider_oci,oci>> |4.17.0
 |===
 
 == Modules
@@ -177,19 +177,13 @@ No modules.
 |no
 
 |[[input_ssh_authorized_keys]] <<input_ssh_authorized_keys,ssh_authorized_keys>>
-|DEPRECATED: use ssh_public_key or ssh_public_key_path instead. Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance.
+|DEPRECATED: use ssh_public_keys instead. Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance.
 |`string`
 |`null`
 |no
 
-|[[input_ssh_public_key]] <<input_ssh_public_key,ssh_public_key>>
-|The content of the ssh public key used to access the compute instance. Set this, or ssh_public_key_path to add multiple keys at once.
-|`string`
-|`null`
-|no
-
-|[[input_ssh_public_key_path]] <<input_ssh_public_key_path,ssh_public_key_path>>
-|Path to file containing one or more ssh public keys used to access the compute instance. One key per line. Set this or the ssh_public_key.
+|[[input_ssh_public_keys]] <<input_ssh_public_keys,ssh_public_keys>>
+|Public SSH keys to be included in the ~/.ssh/authorized_keys file for the default user on the instance. To provide multiple keys, see docs/instance_ssh_keys.adoc.
 |`string`
 |`null`
 |no

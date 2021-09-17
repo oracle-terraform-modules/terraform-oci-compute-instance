@@ -28,7 +28,7 @@ If you are running into one of these scenarios, we recommend opening an issue in
 
 ### Terraform Version and Provider Version
 
-<!--- Please run `terraform -v` to show the Terraform core version and provider version(s). 
+<!--- Please run `terraform -v` to show the Terraform core version and provider version(s).
 If you are using a local copy of the Terraform Oracle Cloud Infrastructure Provider, run the plugin directly to get the version: `<path-to-plugin>/terraform-provider-oci`
 If you are not running the latest version of Terraform or the provider, please upgrade because your issue may have already been fixed. [Terraform documentation on provider versioning](https://www.terraform.io/docs/configuration/providers.html#provider-versions). --->
 
@@ -43,8 +43,8 @@ If you are not running the latest version of Terraform or the provider, please u
 
 ```hcl
 # Copy-paste your Terraform configurations here - for large Terraform configs,
-# please use a service like Dropbox and share a link to the ZIP file. 
-# Please remove any sensitive information from configuration files before sharing them. 
+# please use a service like Dropbox and share a link to the ZIP file.
+# Please remove any sensitive information from configuration files before sharing them.
 ```
 
 ### Debug Output
@@ -59,8 +59,8 @@ Github Gist: https://gist.github.com/
 
 ### Panic Output
 
-<!--- 
-If Terraform produced a panic, please provide a link to a GitHub Gist containing the output of the `crash.log`. 
+<!---
+If Terraform produced a panic, please provide a link to a GitHub Gist containing the output of the `crash.log`.
 
 Github Gist: https://gist.github.com/
 --->
