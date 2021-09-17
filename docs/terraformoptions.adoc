@@ -24,15 +24,15 @@ No modules.
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Type
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_instance[oci_core_instance.this] |resource
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_public_ip[oci_core_public_ip.this] |resource
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume[oci_core_volume.this] |resource
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_attachment[oci_core_volume_attachment.this] |resource
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials.this] |data source
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_private_ips[oci_core_private_ips.this] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_instance[oci_core_instance.instance] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_public_ip[oci_core_public_ip.public_ip] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume[oci_core_volume.volume] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_attachment[oci_core_volume_attachment.volume_attachment] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials.crendential] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_private_ips[oci_core_private_ips.private_ips] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_shapes[oci_core_shapes.ad1] |data source
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnet[oci_core_subnet.this] |data source
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_vnic_attachments[oci_core_vnic_attachments.this] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnet[oci_core_subnet.instance_subnet] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_vnic_attachments[oci_core_vnic_attachments.vnic_attachment] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_availability_domains[oci_identity_availability_domains.ad] |data source
 |===
 
@@ -150,7 +150,7 @@ No modules.
 |no
 
 |[[input_public_ip]] <<input_public_ip,public_ip>>
-|OCID of the Public IP to attach to primary vnic. Valid values are NONE, RESERVED or EPHEMERAL.
+|Whether to create a Public IP to attach to primary vnic and wwhich lifetime. Valid values are NONE, RESERVED or EPHEMERAL.
 |`string`
 |`"NONE"`
 |no

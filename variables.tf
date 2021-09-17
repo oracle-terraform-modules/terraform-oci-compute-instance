@@ -151,7 +151,7 @@ variable "private_ips" {
 }
 
 variable "public_ip" {
-  description = "OCID of the Public IP to attach to primary vnic. Valid values are NONE, RESERVED or EPHEMERAL."
+  description = "Whether to create a Public IP to attach to primary vnic and wwhich lifetime. Valid values are NONE, RESERVED or EPHEMERAL."
   type        = string
   default     = "NONE"
 

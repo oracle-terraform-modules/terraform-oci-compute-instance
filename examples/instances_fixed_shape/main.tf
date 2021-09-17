@@ -34,8 +34,8 @@ module "instance_nonflex" {
   # operating system parameters
   ssh_public_keys = var.ssh_public_keys
   # networking parameters
-  assign_public_ip = var.assign_public_ip
-  subnet_ocids     = var.subnet_ocids
+  public_ip    = var.public_ip # NONE, RESERVED or EPHEMERAL
+  subnet_ocids = var.subnet_ocids
   # storage parameters
   block_storage_sizes_in_gbs = var.block_storage_sizes_in_gbs
 }
@@ -65,8 +65,8 @@ module "instance_nonflex_custom" {
   # operating system parameters
   ssh_public_keys = var.ssh_public_keys
   # networking parameters
-  assign_public_ip = var.assign_public_ip
-  subnet_ocids     = var.subnet_ocids
+  public_ip    = var.public_ip # NONE, RESERVED or EPHEMERAL
+  subnet_ocids = var.subnet_ocids
   # storage parameters
   block_storage_sizes_in_gbs = [] # no block volume will be created
 }

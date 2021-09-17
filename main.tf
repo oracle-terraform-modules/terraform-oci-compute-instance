@@ -24,7 +24,7 @@ locals {
 ####################
 # Subnet Datasource
 ####################
-data "oci_core_subnet" "this" {
+data "oci_core_subnet" "instance_subnet" {
   count     = length(var.subnet_ocids)
   subnet_id = element(var.subnet_ocids, count.index)
 }
@@ -56,7 +56,7 @@ locals {
 ############
 # Instance
 ############
-resource "oci_core_instance" "this" {
+resource "oci_core_instance" "instance" {
   count = var.instance_count
   // If no explicit AD number, spread instances on all ADs in round-robin. Looping to the first when last AD is reached
   availability_domain  = var.ad_number == null ? element(local.ADs, count.index) : element(local.ADs, var.ad_number - 1)
@@ -74,7 +74,7 @@ resource "oci_core_instance" "this" {
   }
 
   create_vnic_details {
-    assign_public_ip = var.public_ip == null ? var.assign_public_ip : false
+    assign_public_ip = var.public_ip == "NONE" ? var.assign_public_ip : false
     display_name     = var.vnic_name == "" ? "" : var.instance_count != "1" ? "${var.vnic_name}_${count.index + 1}" : var.vnic_name
     hostname_label   = var.hostname_label == "" ? "" : var.instance_count != "1" ? "${var.hostname_label}-${count.index + 1}" : var.hostname_label
     private_ip = element(
@@ -83,7 +83,7 @@ resource "oci_core_instance" "this" {
     )
     skip_source_dest_check = var.skip_source_dest_check
     // Current implementation requires providing a list of subnets when using ad-specific subnets
-    subnet_id = data.oci_core_subnet.this[count.index % length(data.oci_core_subnet.this.*.id)].id
+    subnet_id = data.oci_core_subnet.instance_subnet[count.index % length(data.oci_core_subnet.instance_subnet.*.id)].id
 
     freeform_tags = local.merged_freeform_tags
     defined_tags  = var.defined_tags
@@ -111,19 +111,19 @@ resource "oci_core_instance" "this" {
 ##################################
 # Instance Credentials Datasource
 ##################################
-data "oci_core_instance_credentials" "this" {
+data "oci_core_instance_credentials" "crendential" {
   count       = var.resource_platform != "linux" ? var.instance_count : 0
-  instance_id = oci_core_instance.this[count.index].id
+  instance_id = oci_core_instance.instance[count.index].id
 }
 
 #########
 # Volume
 #########
-resource "oci_core_volume" "this" {
+resource "oci_core_volume" "volume" {
   count               = var.instance_count * length(var.block_storage_sizes_in_gbs)
-  availability_domain = oci_core_instance.this[count.index % var.instance_count].availability_domain
+  availability_domain = oci_core_instance.instance[count.index % var.instance_count].availability_domain
   compartment_id      = var.compartment_ocid
-  display_name        = "${oci_core_instance.this[count.index % var.instance_count].display_name}_volume${floor(count.index / var.instance_count)}"
+  display_name        = "${oci_core_instance.instance[count.index % var.instance_count].display_name}_volume${floor(count.index / var.instance_count)}"
   size_in_gbs = element(
     var.block_storage_sizes_in_gbs,
     floor(count.index / var.instance_count),
@@ -135,11 +135,11 @@ resource "oci_core_volume" "this" {
 ####################
 # Volume Attachment
 ####################
-resource "oci_core_volume_attachment" "this" {
+resource "oci_core_volume_attachment" "volume_attachment" {
   count           = var.instance_count * length(var.block_storage_sizes_in_gbs)
   attachment_type = var.attachment_type
-  instance_id     = oci_core_instance.this[count.index % var.instance_count].id
-  volume_id       = oci_core_volume.this[count.index].id
+  instance_id     = oci_core_instance.instance[count.index % var.instance_count].id
+  volume_id       = oci_core_volume.volume[count.index].id
   use_chap        = var.use_chap
 }
 
@@ -147,32 +147,32 @@ resource "oci_core_volume_attachment" "this" {
 # Networking
 ####################
 
-data "oci_core_vnic_attachments" "this" {
+data "oci_core_vnic_attachments" "vnic_attachment" {
   count          = var.instance_count
   compartment_id = var.compartment_ocid
-  instance_id    = oci_core_instance.this[count.index].id
+  instance_id    = oci_core_instance.instance[count.index].id
 
   depends_on = [
-    oci_core_instance.this
+    oci_core_instance.instance
   ]
 }
 
-data "oci_core_private_ips" "this" {
+data "oci_core_private_ips" "private_ips" {
   count   = var.instance_count
-  vnic_id = data.oci_core_vnic_attachments.this[count.index].vnic_attachments[0].vnic_id
+  vnic_id = data.oci_core_vnic_attachments.vnic_attachment[count.index].vnic_attachments[0].vnic_id
 
   depends_on = [
-    oci_core_instance.this
+    oci_core_instance.instance
   ]
 }
 
-resource "oci_core_public_ip" "this" {
+resource "oci_core_public_ip" "public_ip" {
   count          = var.public_ip == "NONE" ? 0 : var.instance_count
   compartment_id = var.compartment_ocid
   lifetime       = var.public_ip
 
-  display_name  = var.public_ip_display_name != null ? var.public_ip_display_name : oci_core_instance.this[count.index].display_name
-  private_ip_id = data.oci_core_private_ips.this[count.index].private_ips[0].id
+  display_name  = var.public_ip_display_name != null ? var.public_ip_display_name : oci_core_instance.instance[count.index].display_name
+  private_ip_id = data.oci_core_private_ips.private_ips[count.index].private_ips[0].id
   # public_ip_pool_id = oci_core_public_ip_pool.test_public_ip_pool.id # * (BYOIP CIDR Blocks) are not supported yet by this module.
 
   freeform_tags = local.merged_freeform_tags

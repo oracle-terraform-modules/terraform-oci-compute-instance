@@ -19,8 +19,7 @@ provider "oci" {
 
 # # * This module will create 1 Flex Compute Instances, with a reserved public IP
 module "instance_reserved_ip" {
-  source = "../../"
-  # source = "oracle-terraform-modules/compute-instance/oci"
+  source = "oracle-terraform-modules/compute-instance/oci"
   # general oci parameters
   compartment_ocid = var.compartment_ocid
   freeform_tags    = var.freeform_tags

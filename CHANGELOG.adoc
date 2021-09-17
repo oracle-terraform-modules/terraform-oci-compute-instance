@@ -26,8 +26,8 @@ Given a version number MAJOR.MINOR.PATCH:
 * Add support for freeform and defined tags for instances, vnics and block volumes (Fix #10, #11, #12, #13, #18, #20)
 * Add "module watermark" freeform tags: module defined and user defined freeform tags are merged on the final resource
 * Add support to provide the `ssh_authorized_keys` argument as a string or as a file (Fix #67 #70)
-* Provision instances with reserved Public IP
-* [ ] Define a backup policy for boot volume and additional block volumes
+* Add support for reserved Public IP on instance first VNIC (fix #55)
+* [ ] Define a backup policy for boot volume and additional block volumes (fix #64)
 * Add new outputs for each provisioned resources: "all_attributes" outputs have full provider coverage and are auto-updating.
 
 === Documentation
