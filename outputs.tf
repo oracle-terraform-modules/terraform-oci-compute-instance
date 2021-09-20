@@ -33,13 +33,13 @@ output "public_ip" {
 
 output "instance_username" {
   description = "Usernames to login to Windows instance. "
-  value       = data.oci_core_instance_credentials.crendential.*.username
+  value       = data.oci_core_instance_credentials.credential.*.username
 }
 
 output "instance_password" {
   description = "Passwords to login to Windows instance. "
   sensitive   = true
-  value       = data.oci_core_instance_credentials.crendential.*.password
+  value       = data.oci_core_instance_credentials.credential.*.password
 }
 
 # New complete outputs for each resources with provider parity. Auto-updating.

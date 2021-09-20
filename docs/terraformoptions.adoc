@@ -28,7 +28,7 @@ No modules.
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_public_ip[oci_core_public_ip.public_ip] |resource
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume[oci_core_volume.volume] |resource
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_attachment[oci_core_volume_attachment.volume_attachment] |resource
-|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials.crendential] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials.credential] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_private_ips[oci_core_private_ips.private_ips] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_shapes[oci_core_shapes.ad1] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnet[oci_core_subnet.instance_subnet] |data source
@@ -150,7 +150,7 @@ No modules.
 |no
 
 |[[input_public_ip]] <<input_public_ip,public_ip>>
-|Whether to create a Public IP to attach to primary vnic and wwhich lifetime. Valid values are NONE, RESERVED or EPHEMERAL.
+|Whether to create a Public IP to attach to primary vnic and which lifetime. Valid values are NONE, RESERVED or EPHEMERAL.
 |`string`
 |`"NONE"`
 |no

@@ -111,7 +111,7 @@ resource "oci_core_instance" "instance" {
 ##################################
 # Instance Credentials Datasource
 ##################################
-data "oci_core_instance_credentials" "crendential" {
+data "oci_core_instance_credentials" "credential" {
   count       = var.resource_platform != "linux" ? var.instance_count : 0
   instance_id = oci_core_instance.instance[count.index].id
 }
