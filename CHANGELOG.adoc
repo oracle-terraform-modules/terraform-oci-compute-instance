@@ -18,13 +18,17 @@ Given a version number MAJOR.MINOR.PATCH:
 
 === Deprecated
 
-* `var.ssh_authorized_keys` is deprecated. Use `var.ssh_public_key` add a single public key or `var.ssh_public_key_path` for a file containing mutiple public keys.
+* `var.ssh_authorized_keys` is deprecated. Use `var.ssh_public_keys`.
 
 === New features
 
 * Add support for freeform and defined tags for instances, vnics and block volumes (Fix #10, #11, #12, #13, #18, #20)
 * Add "module watermark" freeform tags: module defined and user defined freeform tags are merged on the final resource
-* Add support to provide the `ssh_authorized_keys` argument as a string or as a file (Fix #67)
+* Add support to provide the `ssh_authorized_keys` argument as a string or as a file (Fix #67 #70)
+
+=== Documentation
+
+* Add add instructions on how to provide one or more public ssh keys using string, variable or file.
 
 == 2.1.0 - 2021-03-02
 

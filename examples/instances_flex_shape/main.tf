@@ -26,14 +26,16 @@ module "instance_flex" {
   freeform_tags    = var.freeform_tags
   defined_tags     = var.defined_tags
   # compute instance parameters
-  ad_number             = var.instance_ad_number
-  instance_count        = var.instance_count
-  instance_display_name = var.instance_display_name
-  shape                 = var.shape
-  source_ocid           = var.source_ocid
-  source_type           = var.source_type
+  ad_number                   = var.instance_ad_number
+  instance_count              = var.instance_count
+  instance_display_name       = var.instance_display_name
+  shape                       = var.shape
+  source_ocid                 = var.source_ocid
+  source_type                 = var.source_type
+  instance_flex_memory_in_gbs = 1 # only used if shape is Flex type
+  instance_flex_ocpus         = 1 # only used if shape is Flex type
   # operating system parameters
-  ssh_public_key = var.ssh_public_key
+  ssh_public_keys = var.ssh_public_keys
   # networking parameters
   assign_public_ip = var.assign_public_ip
   subnet_ocids     = var.subnet_ocids

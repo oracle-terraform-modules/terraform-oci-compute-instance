@@ -32,7 +32,7 @@ module "instance_nonflex" {
   source_ocid           = var.source_ocid
   source_type           = var.source_type
   # operating system parameters
-  ssh_authorized_keys = var.ssh_authorized_keys
+  ssh_public_keys = var.ssh_public_keys
   # networking parameters
   assign_public_ip = var.assign_public_ip
   subnet_ocids     = var.subnet_ocids
@@ -63,7 +63,7 @@ module "instance_nonflex_custom" {
   instance_flex_memory_in_gbs = 8 # only used if shape is Flex type
   instance_flex_ocpus         = 1 # only used if shape is Flex type
   # operating system parameters
-  ssh_authorized_keys = var.ssh_authorized_keys
+  ssh_public_keys = var.ssh_public_keys
   # networking parameters
   assign_public_ip = var.assign_public_ip
   subnet_ocids     = var.subnet_ocids

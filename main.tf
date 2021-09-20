@@ -90,10 +90,8 @@ resource "oci_core_instance" "this" {
   }
 
   metadata = {
-    ssh_authorized_keys = (var.ssh_public_key != "" ? var.ssh_public_key :
-      (var.ssh_public_key_path != "" ? file(var.ssh_public_key_path) :
-    (var.ssh_authorized_keys != "" ? file(var.ssh_authorized_keys) : "")))
-    user_data = var.user_data
+    ssh_authorized_keys = var.ssh_public_keys != null ? var.ssh_public_keys : file(var.ssh_authorized_keys)
+    user_data           = var.user_data
   }
 
   source_details {

@@ -71,25 +71,6 @@ Compute Instances are also a perfect place to illustrate [module composition pri
 
 - For guidance configuring iSCSI on a Linux platform, see [iSCSI Commands and Information](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm). See also this example of inline iSCSI commands execution using `iscsiadm` CLI called from terraform file: [instance.tf](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/compute/instance/instance.tf).
 
-## Windows remote scripts execution
-
-Terraform supports using Windows Remote Management (WinRM) for connecting to Windows instances. Ensure that your Windows image has WinRM properly configured to allow remote access. Following is a sample WinRM configuration:
-
-```HCL
-winrm quickconfig -q
-winrm set winrm/config/winrs '@{MaxMemoryPerShellMB="300"}’'
-winrm set winrm/config ‘@{MaxTimeoutms=”1800000″}’
-winrm set winrm/config/service '@{AllowUnencrypted="true"}'
-winrm set winrm/config/service/auth '@{Basic="true"}'
-
-netsh advfirewall firewall add rule name="WinRM 5985" protocol=TCP dir=in localport=5985 action=allow
-netsh advfirewall firewall add rule name="WinRM 5986" protocol=TCP dir=in localport=5986 action=allow
-
-net stop winrm
-sc.exe config winrm start=auto
-net start winrm
-```
-
 ## Contributing
 
 This project is open source. Oracle appreciates any contributions that are made by the open source community: raising issues, improving documentation, fixing bugs, or adding new features.

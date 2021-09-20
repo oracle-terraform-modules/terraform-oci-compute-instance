@@ -1,0 +1,94 @@
+= Instance SSH Keys
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+:idprefix:
+:idseparator: -
+:sectlinks:
+:toc:
+
+:uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
+:uri-rel-file-base: link:{uri-repo}/blob/main
+:uri-rel-tree-base: link:{uri-repo}/tree/main
+:uri-docs: {uri-rel-file-base}/docs
+:uri-oci-security-credentials: https://docs.oracle.com/en-us/iaas/Content/General/Concepts/credentials.htm#Instance
+:uri-oci-core-instance: https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_instance#metadata
+:uri-tf-heredoc: https://www.terraform.io/docs/language/expressions/strings.html#heredoc-strings
+:uri-tf-file-function: https://www.terraform.io/docs/language/functions/file.html
+
+This document explains how to provide one or more Instance public SSH keys for Linux instances using this module. See {uri-oci-security-credentials}[Instance SSH key] on OCI documentation for more details.
+
+Linux public keys are controlled by the `ssh_authorized_keys` argument in the `metadata` block of the {uri-oci-core-instance}[oci_core_instance] resource at the provider level.
+
+The corresponding feature on this module uses the module Input Variable `var.ssh_public_keys`.
+
+== Providing one public key
+
+Providing one public ssh key is as simple as directly pasting it as a string in your module block.
+
+[source,hcl]
+----
+module "instance" {
+  source = "oracle-terraform-modules/compute-instance/oci"
+  ...
+  ssh_public_keys = "<your public ssh key>"
+}
+----
+
+Alternatively, you can also declare a variable in your configuration and feed the module with it.
+
+[source,hcl]
+----
+module "instance" {
+  source = "oracle-terraform-modules/compute-instance/oci"
+  ...
+  ssh_public_keys = var.my_public_ssh_key
+}
+
+variable "my_public_ssh_key" {
+  type    = string
+  default = "<ssh public key>" 
+}
+----
+
+== Providing multiple public keys
+
+To inject multiple public SSH keys when launching an instance, you must provide one public key per line. Terraform allows multi-line strings using {uri-tf-heredoc}[Heredoc strings] and this is maybe the most straight-forward solution.
+
+[source,hcl]
+----
+module "instance" {
+  source = "oracle-terraform-modules/compute-instance/oci"
+  ...
+  ssh_public_keys = var.my_public_ssh_key
+}
+
+variable "my_public_ssh_key" {
+  type    = string
+  default = <<EOT
+  <ssh public key 1>
+  <ssh public key 2>
+  ...
+  <ssh public key n>
+  EOT
+}
+----
+
+Alternatively, you can also source your public ssh keys from a file, using the {uri-tf-file-function}[Terraform File function].
+
+[source,hcl]
+----
+module "instance" {
+  source = "oracle-terraform-modules/compute-instance/oci"
+  ...
+  ssh_public_keys = file("/path/to/your/file")
+}
+----
+
+== Examples
+
+For example configuration using this feature, see link:../examples/instances_flex_shape/README.md[examples/instances_flex_shape]
