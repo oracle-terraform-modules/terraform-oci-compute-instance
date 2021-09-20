@@ -118,6 +118,12 @@ variable "assign_public_ip" {
   default     = false
 }
 
+variable "public_ip" {
+  description = "Whether to create a Public IP to attach to primary vnic and which lifetime. Valid values are NONE, RESERVED or EPHEMERAL."
+  type        = string
+  default     = "NONE"
+}
+
 variable "subnet_ocids" {
   description = "The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created."
   type        = list(string)

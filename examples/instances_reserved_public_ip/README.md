@@ -1,11 +1,10 @@
 # Creating Compute Instances using Flex shape
 
-This example illustrates how to use this module to creates compute instances using Flex Shape, and optionally provision and attach a block volume to the created instances.
+This example illustrates how to use this module to creates compute instances with a reserved public IP.
 
-Two modules will be configured:
+One modules will be configured:
 
-- the first module will create 1 instance (1 OCPU, 16GB RAM) with 1 Block Volume (50GB) attached to it
-- the second module, if uncommented,  will create 4 instances (1 OCUP, 1GB RAM) with no additional Block Volume
+- 1 instance (1 OCPU, 1GB RAM) with a reserved public IP associated with the Primary IP of the primary VNIC.
 
 ## Prerequisites
 
@@ -31,6 +30,8 @@ Then apply the example using the following commands:
 > terraform plan
 > terraform apply
 ```
+
+See [Provisioning Infrastructure with Terraform] for more details about Terraform CLI and the available subcommands.
 
 [Terraform Variable Definition file]:https://www.terraform.io/docs/language/values/variables.html#variable-definitions-tfvars-files
 [docs/prerequisites.adoc]:https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/blob/main/docs/prerequisites.adoc

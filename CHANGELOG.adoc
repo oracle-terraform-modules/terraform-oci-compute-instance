@@ -19,12 +19,16 @@ Given a version number MAJOR.MINOR.PATCH:
 === Deprecated
 
 * `var.ssh_authorized_keys` is deprecated. Use `var.ssh_public_keys`.
+* `var.assign_public_ip` is deprecated. Use `var.public_ip` with the predefined keywords instead.
 
 === New features
 
 * Add support for freeform and defined tags for instances, vnics and block volumes (Fix #10, #11, #12, #13, #18, #20)
 * Add "module watermark" freeform tags: module defined and user defined freeform tags are merged on the final resource
 * Add support to provide the `ssh_authorized_keys` argument as a string or as a file (Fix #67 #70)
+* Add support for reserved Public IP on instance first VNIC (fix #55)
+* [ ] Define a backup policy for boot volume and additional block volumes (fix #64)
+* Add new outputs for each provisioned resources: "all_attributes" outputs have full provider coverage and are auto-updating.
 
 === Documentation
 
@@ -47,7 +51,6 @@ Given a version number MAJOR.MINOR.PATCH:
 * Outputs produces unnecessarily multidimensional objects (Issue #31)
 * Repo maintenance:
 ** add .gitattributes for consistent line ending and tab
-** add pre-commit configuration file
 
 == 2.0.4 - 2021-02-13
 

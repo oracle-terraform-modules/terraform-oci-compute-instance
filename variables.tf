@@ -126,7 +126,8 @@ variable "user_data" {
 # networking parameters
 
 variable "assign_public_ip" {
-  description = "Whether the VNIC should be assigned a public IP address."
+  #! Deprecation notice: will be removed at next major release. Use `var.public_ip` instead.
+  description = "Deprecated: use `var.public_ip` instead. Whether the VNIC should be assigned a public IP address (Always EPHEMERAL)."
   type        = bool
   default     = false
 }
@@ -147,6 +148,23 @@ variable "private_ips" {
   description = "Private IP addresses of your choice to assign to the VNICs."
   type        = list(string)
   default     = []
+}
+
+variable "public_ip" {
+  description = "Whether to create a Public IP to attach to primary vnic and which lifetime. Valid values are NONE, RESERVED or EPHEMERAL."
+  type        = string
+  default     = "NONE"
+
+  validation {
+    condition     = contains(["NONE", "RESERVED", "EPHEMERAL"], var.public_ip)
+    error_message = "Accepted values are NONE, RESERVED or EPHEMERAL."
+  }
+}
+
+variable "public_ip_display_name" {
+  description = "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable."
+  type        = string
+  default     = null
 }
 
 variable "skip_source_dest_check" {
