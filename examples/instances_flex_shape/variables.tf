@@ -132,6 +132,12 @@ variable "subnet_ocids" {
 
 # storage parameters
 
+variable "boot_volume_backup_policy" {
+  description = "Choose between default backup policies : Gold, Silver, Bronze. Use Disabled to affect no backup policy on the Boot Volume."
+  type        = string
+  default     = "disabled"
+}
+
 variable "block_storage_sizes_in_gbs" {
   description = "Sizes of volumes to create and attach to each instance."
   type        = list(string)

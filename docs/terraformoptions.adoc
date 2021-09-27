@@ -1,3 +1,5 @@
+// BEGIN_TF_DOCS
+
 == Requirements
 
 [cols="a,a",options="header,autowidth"]
@@ -6,7 +8,6 @@
 |[[requirement_terraform]] <<requirement_terraform,terraform>> |>= 0.12
 |[[requirement_oci]] <<requirement_oci,oci>> |>= 3.27
 |===
-
 == Providers
 
 [cols="a,a",options="header,autowidth"]
@@ -14,11 +15,6 @@
 |Name |Version
 |[[provider_oci]] <<provider_oci,oci>> |4.17.0
 |===
-
-== Modules
-
-No modules.
-
 == Resources
 
 [cols="a,a",options="header,autowidth"]
@@ -28,14 +24,15 @@ No modules.
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_public_ip[oci_core_public_ip.public_ip] |resource
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume[oci_core_volume.volume] |resource
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_attachment[oci_core_volume_attachment.volume_attachment] |resource
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_volume_backup_policy_assignment[oci_core_volume_backup_policy_assignment.boot_volume_backup_policy] |resource
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_instance_credentials[oci_core_instance_credentials.credential] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_private_ips[oci_core_private_ips.private_ips] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_shapes[oci_core_shapes.ad1] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnet[oci_core_subnet.instance_subnet] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_vnic_attachments[oci_core_vnic_attachments.vnic_attachment] |data source
+|https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_volume_backup_policies[oci_core_volume_backup_policies.default_backup_policies] |data source
 |https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_availability_domains[oci_identity_availability_domains.ad] |data source
 |===
-
 == Inputs
 
 [cols="a,a,a,a,a",options="header,autowidth"]
@@ -63,6 +60,12 @@ No modules.
 |Sizes of volumes to create and attach to each instance.
 |`list(number)`
 |`[]`
+|no
+
+|[[input_boot_volume_backup_policy]] <<input_boot_volume_backup_policy,boot_volume_backup_policy>>
+|Choose between default backup policies : Gold, Silver, Bronze. Use Disabled to affect no backup policy on the Boot Volume.
+|`string`
+|`"disabled"`
 |no
 
 |[[input_boot_volume_size_in_gbs]] <<input_boot_volume_size_in_gbs,boot_volume_size_in_gbs>>
@@ -228,7 +231,6 @@ No modules.
 |no
 
 |===
-
 == Outputs
 
 [cols="a,a",options="header,autowidth"]
@@ -247,3 +249,5 @@ No modules.
 |[[output_volume_all_attributes]] <<output_volume_all_attributes,volume_all_attributes>> |all attributes of created volumes
 |[[output_volume_attachment_all_attributes]] <<output_volume_attachment_all_attributes,volume_attachment_all_attributes>> |all attributes of created volumes attachments
 |===
+
+// END_TF_DOCS

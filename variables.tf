@@ -1,4 +1,5 @@
-// Copyright (c) 2018, 2021, Oracle and/or its affiliates.
+# Copyright (c) 2018, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # general oci parameters
 
@@ -204,6 +205,17 @@ variable "block_storage_sizes_in_gbs" {
 #   type        = bool
 #   default     = true
 # }
+
+variable "boot_volume_backup_policy" {
+  description = "Choose between default backup policies : Gold, Silver, Bronze. Use Disabled to affect no backup policy on the Boot Volume."
+  type        = string
+  default     = "disabled"
+
+  validation {
+    condition     = contains(["gold", "silver", "bronze", "disabled"], var.boot_volume_backup_policy)
+    error_message = "Accepted values are gold, silver, bronze or disabled (case sensitive)."
+  }
+}
 
 variable "boot_volume_size_in_gbs" {
   description = "The size of the boot volume in GBs."

@@ -14,7 +14,7 @@ Given a version number MAJOR.MINOR.PATCH:
 * MINOR version when adding functionality in a backwards compatible manner,
 * PATCH version when making backwards compatible bug fixes.
 
-== 2.2.0 - unreleased
+== 2.2.0 - 2021-09-27
 
 === Deprecated
 
@@ -27,7 +27,7 @@ Given a version number MAJOR.MINOR.PATCH:
 * Add "module watermark" freeform tags: module defined and user defined freeform tags are merged on the final resource
 * Add support to provide the `ssh_authorized_keys` argument as a string or as a file (Fix #67 #70)
 * Add support for reserved Public IP on instance first VNIC (fix #55)
-* [ ] Define a backup policy for boot volume and additional block volumes (fix #64)
+* Add support for backup policy on boot volume (fix #64)
 * Add new outputs for each provisioned resources: "all_attributes" outputs have full provider coverage and are auto-updating.
 
 === Documentation

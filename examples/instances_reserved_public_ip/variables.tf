@@ -104,9 +104,10 @@ variable "source_type" {
 
 # operating system parameters
 
-variable "ssh_authorized_keys" {
-  description = "Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance."
+variable "ssh_public_keys" {
+  description = "Public SSH keys to be included in the ~/.ssh/authorized_keys file for the default user on the instance. To provide multiple keys, see docs/instance_ssh_keys.adoc."
   type        = string
+  default     = null
 }
 
 # networking parameters
@@ -123,6 +124,12 @@ variable "subnet_ocids" {
 }
 
 # storage parameters
+
+variable "boot_volume_backup_policy" {
+  description = "Choose between default backup policies : Gold, Silver, Bronze. Use Disabled to affect no backup policy on the Boot Volume."
+  type        = string
+  default     = "disabled"
+}
 
 variable "block_storage_sizes_in_gbs" {
   description = "Sizes of volumes to create and attach to each instance."

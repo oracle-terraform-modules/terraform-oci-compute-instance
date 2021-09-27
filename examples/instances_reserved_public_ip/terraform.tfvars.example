@@ -27,7 +27,15 @@ source_ocid  = "<The OCID of an image or a boot volume>"
 
 # operating system parameters
 
-ssh_authorized_keys = "<path to the instance's public key>"
+ssh_public_keys = <<EOT
+<ssh_public_key_1>
+<ssh_public_key_2>
+<ssh_public_key_3>
+EOT
+
+# storage parameters
+
+boot_volume_backup_policy = "<the backup policy name>" # gold, silver, bronze, disabled
 
 # networking parameters
 

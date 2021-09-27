@@ -51,7 +51,7 @@ module "instance" {
 
 variable "my_public_ssh_key" {
   type    = string
-  default = "<ssh public key>" 
+  default = "<ssh public key>"
 }
 ----
 
