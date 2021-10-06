@@ -207,7 +207,7 @@ variable "block_storage_sizes_in_gbs" {
 # }
 
 variable "boot_volume_backup_policy" {
-  description = "Choose between default backup policies : Gold, Silver, Bronze. Use Disabled to affect no backup policy on the Boot Volume."
+  description = "Choose between default backup policies : gold, silver, bronze. Use disabled to affect no backup policy on the Boot Volume."
   type        = string
   default     = "disabled"
 

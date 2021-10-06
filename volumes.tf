@@ -9,7 +9,7 @@
 
 resource "oci_core_volume_backup_policy_assignment" "boot_volume_backup_policy" {
   # * The boot volume backup policy is controlled by var.boot_volume_backup_policy.
-  # * You can choose between OCI default backup policies : Gold, Silver, Bronze.
+  # * You can choose between OCI default backup policies : gold, silver, bronze.
   # * If you set the variable to "disabled", no backup policy will be applied to the boot volume.
   count     = var.boot_volume_backup_policy != "disabled" ? var.instance_count : 0
   asset_id  = oci_core_instance.instance.*.boot_volume_id[count.index]

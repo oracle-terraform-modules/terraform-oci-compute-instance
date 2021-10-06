@@ -63,7 +63,7 @@
 |no
 
 |[[input_boot_volume_backup_policy]] <<input_boot_volume_backup_policy,boot_volume_backup_policy>>
-|Choose between default backup policies : Gold, Silver, Bronze. Use Disabled to affect no backup policy on the Boot Volume.
+|Choose between default backup policies : gold, silver, bronze. Use disabled to affect no backup policy on the Boot Volume.
 |`string`
 |`"disabled"`
 |no
