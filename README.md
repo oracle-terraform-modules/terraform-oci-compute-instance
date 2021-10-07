@@ -2,7 +2,11 @@
 
 This module provides an easy way to launch compute instances with advanced settings and good practices embedded.
 
-On top of the compute instance capabilities, this module can also provision and attach additional Block Volumes to the instances.
+On top of the compute instance capabilities, this module can also:
+
+- provision and attach additional Block Volumes to the instances,
+- assign a reserved public IP, instead of using Ephemeral,
+- assign a backup policy for boot volumes
 
 **Please Note:**
 
@@ -46,8 +50,8 @@ module "instance" {
   instance_display_name      = var.instance_display_name
   source_ocid                = var.source_ocid
   subnet_ocids               = var.subnet_ocids
-  assign_public_ip           = var.assign_public_ip
-  ssh_authorized_keys        = var.ssh_authorized_keys_file
+  public_ip                  = var.public_ip # NONE, RESERVED or EPHEMERAL
+  ssh_public_keys            = var.ssh_public_keys
   block_storage_sizes_in_gbs = [50]
   shape                      = var.shape
 }

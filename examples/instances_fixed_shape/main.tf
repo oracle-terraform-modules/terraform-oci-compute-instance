@@ -37,6 +37,7 @@ module "instance_nonflex" {
   public_ip    = var.public_ip # NONE, RESERVED or EPHEMERAL
   subnet_ocids = var.subnet_ocids
   # storage parameters
+  boot_volume_backup_policy  = var.boot_volume_backup_policy
   block_storage_sizes_in_gbs = var.block_storage_sizes_in_gbs
 }
 
@@ -68,6 +69,7 @@ module "instance_nonflex_custom" {
   public_ip    = var.public_ip # NONE, RESERVED or EPHEMERAL
   subnet_ocids = var.subnet_ocids
   # storage parameters
+  boot_volume_backup_policy  = var.boot_volume_backup_policy
   block_storage_sizes_in_gbs = [] # no block volume will be created
 }
 

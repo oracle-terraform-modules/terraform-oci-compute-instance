@@ -1,4 +1,4 @@
-# Creating Compute Instances using Flex shape
+# Creating Compute Instances with a reserved public IP
 
 This example illustrates how to use this module to creates compute instances with a reserved public IP.
 

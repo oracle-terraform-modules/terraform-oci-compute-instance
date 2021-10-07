@@ -34,11 +34,12 @@ module "instance_reserved_ip" {
   instance_flex_memory_in_gbs = 1 # only used if shape is Flex type
   instance_flex_ocpus         = 1 # only used if shape is Flex type
   # operating system parameters
-  ssh_authorized_keys = var.ssh_authorized_keys
+  ssh_public_keys = var.ssh_public_keys
   # networking parameters
   public_ip    = var.public_ip # NONE, RESERVED or EPHEMERAL
   subnet_ocids = var.subnet_ocids
   # storage parameters
+  boot_volume_backup_policy  = var.boot_volume_backup_policy
   block_storage_sizes_in_gbs = [] # no block volume will be created
   preserve_boot_volume       = false
 }

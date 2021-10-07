@@ -33,6 +33,10 @@ ssh_public_keys = <<EOT
 <ssh_public_key_3>
 EOT
 
+# storage parameters
+
+boot_volume_backup_policy = "<the backup policy name>" # gold, silver, bronze, disabled
+
 # networking parameters
 
 subnet_ocids = ["<a list of the subnet OCIDs which to create the VNICs in>"]
