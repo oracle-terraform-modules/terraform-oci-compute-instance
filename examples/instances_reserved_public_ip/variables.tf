@@ -85,6 +85,17 @@ variable "instance_flex_ocpus" {
   default     = null
 }
 
+variable "instance_state" {
+  type        = string
+  description = "(Updatable) The target state for the instance. Could be set to RUNNING or STOPPED."
+  default     = "RUNNING"
+
+  validation {
+    condition     = contains(["RUNNING", "STOPPED"], var.instance_state)
+    error_message = "Accepted values are RUNNING or STOPPED."
+  }
+}
+
 variable "shape" {
   description = "The shape of an instance."
   type        = string

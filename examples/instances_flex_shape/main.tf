@@ -29,6 +29,7 @@ module "instance_flex" {
   ad_number                   = var.instance_ad_number
   instance_count              = var.instance_count
   instance_display_name       = var.instance_display_name
+  instance_state              = var.instance_state
   shape                       = var.shape
   source_ocid                 = var.source_ocid
   source_type                 = var.source_type
@@ -60,6 +61,7 @@ output "instance_flex" {
 #   ad_number                   = null
 #   instance_count              = 4
 #   instance_display_name       = "instance_flex_custom"
+# instance_state                = var.instance_state
 #   shape                       = var.shape
 #   source_ocid                 = var.source_ocid
 #   source_type                 = var.source_type
