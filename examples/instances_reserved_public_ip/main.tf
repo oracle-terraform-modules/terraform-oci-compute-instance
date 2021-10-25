@@ -28,6 +28,7 @@ module "instance_reserved_ip" {
   ad_number                   = null
   instance_count              = 1
   instance_display_name       = "instance_reserved_ip"
+  instance_state              = var.instance_state
   shape                       = var.shape
   source_ocid                 = var.source_ocid
   source_type                 = var.source_type

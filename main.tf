@@ -73,6 +73,7 @@ resource "oci_core_instance" "instance" {
   extended_metadata    = var.extended_metadata
   ipxe_script          = var.ipxe_script
   preserve_boot_volume = var.preserve_boot_volume
+  state                = var.instance_state
   shape                = var.shape
   shape_config {
     // If shape name contains ".Flex" and instance_flex inputs are not null, use instance_flex inputs values for shape_config block

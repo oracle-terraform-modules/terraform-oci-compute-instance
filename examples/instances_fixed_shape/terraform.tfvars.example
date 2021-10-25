@@ -24,6 +24,7 @@ compartment_ocid = "<compartment OCID>"
 # compute instance parameters
 
 source_ocid  = "<The OCID of an image or a boot volume>"
+instance_state = "RUNNING"
 
 # operating system parameters
 
