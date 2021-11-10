@@ -21,7 +21,7 @@ endif::[]
 :uri-tf-file-function: https://www.terraform.io/docs/language/functions/file.html
 :uri-adding-bv-linux: https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm
 :uri-adding-bv-windows: https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingstorageForWindows.htm
-:uri-inline-iscsi-cmd: https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/compute/instance/instance.tf
+:uri-inline-iscsi-cmd: https://github.com/terraform-providers/terraform-provider-oci/blob/afe6f577b70e24c31c8bcddf6a3750d6b0f9e74c/examples/compute/instance/instance.tf#L204
 :uri-tf-remote-exec: https://www.terraform.io/docs/language/resources/provisioners/remote-exec.html
 :uri-oci-ocid-daemon: https://docs.oracle.com/en-us/iaas/Content/Compute/References/ocid.htm
 
