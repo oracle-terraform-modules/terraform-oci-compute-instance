@@ -1,0 +1,44 @@
+= Configuring iSCSI volume attachments
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+:idprefix:
+:idseparator: -
+:sectlinks:
+:toc:
+
+:uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-vcn
+:uri-rel-file-base: link:{uri-repo}/blob/main
+:uri-rel-tree-base: link:{uri-repo}/tree/main
+:uri-docs: {uri-rel-file-base}/docs
+:uri-oci-security-credentials: https://docs.oracle.com/en-us/iaas/Content/General/Concepts/credentials.htm#Instance
+:uri-oci-core-instance: https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_instance#metadata
+:uri-tf-heredoc: https://www.terraform.io/docs/language/expressions/strings.html#heredoc-strings
+:uri-tf-file-function: https://www.terraform.io/docs/language/functions/file.html
+:uri-adding-bv-linux: https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm
+:uri-adding-bv-windows: https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingstorageForWindows.htm
+:uri-inline-iscsi-cmd: https://github.com/terraform-providers/terraform-provider-oci/blob/afe6f577b70e24c31c8bcddf6a3750d6b0f9e74c/examples/compute/instance/instance.tf#L204
+:uri-tf-remote-exec: https://www.terraform.io/docs/language/resources/provisioners/remote-exec.html
+:uri-oci-ocid-daemon: https://docs.oracle.com/en-us/iaas/Content/Compute/References/ocid.htm
+
+If you attach additional Block Volumes to your compute instance with an attachement type `iSCSI`, the operating system needs to be aware of this new device before it can be used.
+
+There is two methods for that:
+
+- configuring the device manually with the operating system tools,
+- automatically configure the device using an OCI helper: `ocid` daemon.
+
+== Configuring additional devices manually
+
+- For guidance on configuring iSCSI on a Windows platform, see {uri-adding-bv-windows}[Adding a Block Volume to a Windows Instance].
+- For guidance on configuring iSCSI on a Linux platform, see {uri-adding-bv-linux}[iSCSI Commands and Information]. See also this example on the oci provider documentation of {uri-inline-iscsi-cmd}[inline iSCSI commands execution using iscsiadm CLI] using a {uri-tf-remote-exec}[Terraform remote-exec].
+
+== Configuration additional devices automatically
+
+The `ocid` daemon is the service component of the `oci-utils`. It monitors for changes in the VNIC and iSCSI configuration of the instance and attempts to automatically attach or detach devices as they appear or disappear - for example, when they are created or deleted using the Oracle Cloud Infrastructure Console, CLI, or the API.
+
+See {uri-oci-ocid-daemon}[the ocid daemon documentation] for more details.
