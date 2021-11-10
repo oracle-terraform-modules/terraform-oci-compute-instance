@@ -54,6 +54,8 @@ module "instance" {
   ssh_public_keys            = var.ssh_public_keys
   block_storage_sizes_in_gbs = [50]
   shape                      = var.shape
+  instance_state             = var.instance_state # RUNNING or STOPPED
+  boot_volume_backup_policy  = var.boot_volume_backup_policy # disabled, gold, silver or bronze
 }
 ```
 
@@ -63,13 +65,7 @@ The current focus is to close the gap between this module and the provider's cap
 
 We will continue to push in that direction with the goal of [feature parity with the provider's capabilities](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/projects/4), as well as adding more features and integration points with other OCI services: Block Volume Backups, Secondary VNICs and IPs, etc ...
 
-Given the dependency to Network and Storage for Compute Instances,it is a perfect place to illustrate [module composition principles](https://www.terraform.io/docs/language/modules/develop/composition.html) and how to reuse the other official Terraform OCI modules.
-
-## Configuring iSCSI volume attachments
-
-- For guidance configuring iSCSI on a Windows platform, see [Adding a Block Volume to a Windows Instance](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingstorageForWindows.htm).
-
-- For guidance configuring iSCSI on a Linux platform, see [iSCSI Commands and Information](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/iscsiinformation.htm). See also this example of inline iSCSI commands execution using `iscsiadm` CLI called from terraform file: [instance.tf](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/compute/instance/instance.tf).
+Given the dependency to Network and Storage for Compute Instances, it is a perfect place to illustrate [module composition principles](https://www.terraform.io/docs/language/modules/develop/composition.html) and how to reuse the other official Terraform OCI modules.
 
 ## Contributing
 
