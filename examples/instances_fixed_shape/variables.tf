@@ -135,11 +135,6 @@ variable "public_ip" {
   default     = "NONE"
 }
 
-variable "subnet_ocids" {
-  description = "The unique identifiers (OCIDs) of the subnets in which the instance primary VNICs are created."
-  type        = list(string)
-}
-
 # storage parameters
 
 variable "boot_volume_backup_policy" {
