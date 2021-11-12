@@ -65,7 +65,7 @@ The current focus is to close the gap between this module and the provider's cap
 
 We will continue to push in that direction with the goal of [feature parity with the provider's capabilities](https://github.com/oracle-terraform-modules/terraform-oci-compute-instance/projects/4), as well as adding more features and integration points with other OCI services: Block Volume Backups, Secondary VNICs and IPs, etc ...
 
-Given the dependency to Network and Storage for Compute Instances, it is a perfect place to illustrate [module composition principles](https://www.terraform.io/docs/language/modules/develop/composition.html) and how to reuse the other official Terraform OCI modules.
+Given the dependency to Network and Storage for Compute Instances, this module is also a perfect place to illustrate [module composition principles](https://www.terraform.io/docs/language/modules/develop/composition.html) and how to reuse the other official Terraform OCI modules.
 
 ## Contributing
 

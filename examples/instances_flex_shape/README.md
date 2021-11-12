@@ -1,11 +1,17 @@
 # Creating Compute Instances using Flex shape
 
-This example illustrates how to use this module to creates compute instances using Flex Shape, and optionally provision and attach a block volume to the created instances.
+This example illustrates how to use this module to creates compute instances using Flex Shape with all the related networking, and optionally provision and attach a block volume to the created instances.
 
-Two modules will be configured:
+Two compute-instance modules will be configured:
 
 - the first module will create 1 instance (1 OCPU, 16GB RAM) with 1 Block Volume (50GB) attached to it
 - the second module, if uncommented,  will create 4 instances (1 OCUP, 1GB RAM) with no additional Block Volume
+
+Networking to house theses instances will also be created:
+
+- one VCN using the [VCN module](https://registry.terraform.io/modules/oracle-terraform-modules/vcn/oci/latest) from Terraform Registry
+- one subnet
+- on Network Security Group
 
 ## Prerequisites
 

@@ -14,6 +14,13 @@ Given a version number MAJOR.MINOR.PATCH:
 * MINOR version when adding functionality in a backwards compatible manner,
 * PATCH version when making backwards compatible bug fixes.
 
+== 2.3.0 - 2021-11-12
+
+=== New features
+
+* Add support for instance_state: the provisionned instance state can be RUNNING or STOPPED
+* Add support for NSG: option to attach an NSG to the first VNIC
+
 == 2.2.0 - 2021-09-27
 
 === Deprecated

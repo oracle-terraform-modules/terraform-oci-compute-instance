@@ -93,6 +93,7 @@ resource "oci_core_instance" "instance" {
     skip_source_dest_check = var.skip_source_dest_check
     // Current implementation requires providing a list of subnets when using ad-specific subnets
     subnet_id = data.oci_core_subnet.instance_subnet[count.index % length(data.oci_core_subnet.instance_subnet.*.id)].id
+    nsg_ids   = var.primary_vnic_nsg_ids
 
     freeform_tags = local.merged_freeform_tags
     defined_tags  = var.defined_tags

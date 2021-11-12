@@ -196,6 +196,12 @@ variable "vnic_name" {
   default     = ""
 }
 
+variable "primary_vnic_nsg_ids" {
+  description = "A list of the OCIDs of the network security groups (NSGs) to add the primary VNIC to"
+  type        = list(string)
+  default     = null
+}
+
 # storage parameters
 
 variable "attachment_type" {

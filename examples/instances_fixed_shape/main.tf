@@ -35,8 +35,9 @@ module "instance_nonflex" {
   # operating system parameters
   ssh_public_keys = var.ssh_public_keys
   # networking parameters
-  public_ip    = var.public_ip # NONE, RESERVED or EPHEMERAL
-  subnet_ocids = var.subnet_ocids
+  public_ip            = var.public_ip # NONE, RESERVED or EPHEMERAL
+  subnet_ocids         = [oci_core_subnet.example_sub.id]
+  primary_vnic_nsg_ids = null
   # storage parameters
   boot_volume_backup_policy  = var.boot_volume_backup_policy
   block_storage_sizes_in_gbs = var.block_storage_sizes_in_gbs
@@ -68,8 +69,9 @@ module "instance_nonflex_custom" {
   # operating system parameters
   ssh_public_keys = var.ssh_public_keys
   # networking parameters
-  public_ip    = var.public_ip # NONE, RESERVED or EPHEMERAL
-  subnet_ocids = var.subnet_ocids
+  public_ip            = var.public_ip # NONE, RESERVED or EPHEMERAL
+  subnet_ocids         = [oci_core_subnet.example_sub.id]
+  primary_vnic_nsg_ids = [oci_core_network_security_group.example_nsg.id]
   # storage parameters
   boot_volume_backup_policy  = var.boot_volume_backup_policy
   block_storage_sizes_in_gbs = [] # no block volume will be created
@@ -78,4 +80,36 @@ module "instance_nonflex_custom" {
 output "instance_nonflex_custom" {
   description = "ocid of created instances."
   value       = module.instance_nonflex_custom.instances_summary
+}
+
+module "example_vcn" {
+  source = "oracle-terraform-modules/vcn/oci"
+
+  # general oci parameters
+  compartment_id = var.compartment_ocid
+
+  # vcn parameters
+  lockdown_default_seclist = false # boolean: true or false
+}
+
+resource "oci_core_network_security_group" "example_nsg" {
+  #Required
+  compartment_id = var.compartment_ocid
+  vcn_id         = module.example_vcn.vcn_id
+
+  #Optional
+  display_name  = "NSG_example"
+  freeform_tags = var.freeform_tags
+}
+
+resource "oci_core_subnet" "example_sub" {
+  #Required
+  cidr_block     = "10.0.0.0/24"
+  compartment_id = var.compartment_ocid
+  vcn_id         = module.example_vcn.vcn_id
+
+  #Optional
+  display_name               = "example-sub"
+  dns_label                  = "example"
+  prohibit_public_ip_on_vnic = true
 }
