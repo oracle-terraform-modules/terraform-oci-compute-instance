@@ -6,7 +6,7 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
-:uri-oracle-oca: https://www.oracle.com/technetwork/community/oca-486395.html
+:uri-oracle-oca: :uri-oracle-oca: https://oca.opensource.oracle.com/
 :imagesdir: docs/diagrams
 :toc:
 
