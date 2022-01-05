@@ -163,5 +163,5 @@ resource "oci_core_public_ip" "public_ip" {
 }
 
   locals {
-    ssh_authorized_keys_in_file = file(var.ssh_authorized_keys)
+    ssh_authorized_keys_in_file = fileexists(var.ssh_authorized_keys) ? file(var.ssh_authorized_keys) : null
   }
