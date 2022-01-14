@@ -101,7 +101,7 @@ resource "oci_core_instance" "instance" {
   }
 
   metadata = {
-    ssh_authorized_keys = var.ssh_public_keys != null ? var.ssh_public_keys : local.ssh_authorized_keys_in_file
+    ssh_authorized_keys = var.ssh_public_keys != null ? var.ssh_public_keys : file(var.ssh_authorized_keys)
     user_data           = var.user_data
   }
 
@@ -162,7 +162,3 @@ resource "oci_core_public_ip" "public_ip" {
   freeform_tags = local.merged_freeform_tags
   defined_tags  = var.defined_tags
 }
-
-  locals {
-    ssh_authorized_keys_in_file = fileexists(var.ssh_authorized_keys) ? file(var.ssh_authorized_keys) : null
-  }
