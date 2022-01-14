@@ -69,7 +69,7 @@ resource "oci_core_instance" "instance" {
   // If no explicit AD number, spread instances on all ADs in round-robin. Looping to the first when last AD is reached
   availability_domain  = var.ad_number == null ? element(local.ADs, count.index) : element(local.ADs, var.ad_number - 1)
   compartment_id       = var.compartment_ocid
-  display_name         = var.instance_display_name == "" ? "" : var.instance_count != "1" ? "${var.instance_display_name}_${count.index + 1}" : var.instance_display_name
+  display_name         = var.instance_display_name == "" ? "" : var.instance_count != 1 ? "${var.instance_display_name}_${count.index + 1}" : var.instance_display_name
   extended_metadata    = var.extended_metadata
   ipxe_script          = var.ipxe_script
   preserve_boot_volume = var.preserve_boot_volume
