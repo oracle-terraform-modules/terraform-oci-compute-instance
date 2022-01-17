@@ -78,8 +78,8 @@ resource "oci_core_instance" "instance" {
   shape_config {
     // If shape name contains ".Flex" and instance_flex inputs are not null, use instance_flex inputs values for shape_config block
     // Else use values from data.oci_core_shapes.ad1 for var.shape
-    memory_in_gbs = local.shape_is_flex == true && var.instance_flex_memory_in_gbs != null ? var.instance_flex_memory_in_gbs : local.shapes_config[var.shape]["memory_in_gbs"]
-    ocpus         = local.shape_is_flex == true && var.instance_flex_ocpus != null ? var.instance_flex_ocpus : local.shapes_config[var.shape]["ocpus"]
+    memory_in_gbs             = local.shape_is_flex == true && var.instance_flex_memory_in_gbs != null ? var.instance_flex_memory_in_gbs : local.shapes_config[var.shape]["memory_in_gbs"]
+    ocpus                     = local.shape_is_flex == true && var.instance_flex_ocpus != null ? var.instance_flex_ocpus : local.shapes_config[var.shape]["ocpus"]
     baseline_ocpu_utilization = var.baseline_ocpu_utilization
   }
 

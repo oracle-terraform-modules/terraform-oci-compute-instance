@@ -93,9 +93,9 @@ variable "shape" {
 
 variable "baseline_ocpu_utilization" {
   description = "(Updatable) The baseline OCPU utilization for a subcore burstable VM instance"
-  type = string
-  default = "BASELINE_1_1"
-  
+  type        = string
+  default     = "BASELINE_1_1"
+
   validation {
     condition     = contains(["BASELINE_1_8", "BASELINE_1_2", "BASELINE_1_1"], var.baseline_ocpu_utilization)
     error_message = "Accepted values are BASELINE_1_8, BASELINE_1_2 or BASELINE_1_1."
