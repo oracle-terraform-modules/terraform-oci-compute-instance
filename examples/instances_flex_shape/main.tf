@@ -35,6 +35,7 @@ module "instance_flex" {
   source_type                 = var.source_type
   instance_flex_memory_in_gbs = var.instance_flex_memory_in_gbs # only used if shape is Flex type
   instance_flex_ocpus         = 1                               # only used if shape is Flex type
+  baseline_ocpu_utilization = var.baseline_ocpu_utilization
   # operating system parameters
   ssh_public_keys = var.ssh_public_keys
   # networking parameters
