@@ -121,6 +121,12 @@
 |`null`
 |no
 
+|[[baseline_ocpu_utilization]] <<input_baseline_ocpu_utilization,baseline_ocpu_utilization>>
+|(Updatable) The baseline OCPU utilization for a subcore burstable VM instance.
+|`string`
+|`BASELINE_1_1`
+|no
+
 |[[input_instance_flex_ocpus]] <<input_instance_flex_ocpus,instance_flex_ocpus>>
 |(Updatable) The total number of OCPUs available to the instance.
 |`number`
