@@ -46,7 +46,7 @@ data "oci_core_subnet" "instance_subnet" {
 // This will not check quota and limits for AD requested at resource creation
 data "oci_core_shapes" "current_ad" {
   compartment_id      = var.compartment_ocid
-  availability_domain = local.ADs[(var.ad_number - 1)]
+  availability_domain = var.ad_number == null ? element(local.ADs, 0) : element(local.ADs, var.ad_number - 1)
 }
 
 locals {
