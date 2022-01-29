@@ -78,9 +78,55 @@ resource "oci_core_instance" "instance" {
   shape_config {
     // If shape name contains ".Flex" and instance_flex inputs are not null, use instance_flex inputs values for shape_config block
     // Else use values from data.oci_core_shapes.current_ad for var.shape
-    memory_in_gbs = local.shape_is_flex == true && var.instance_flex_memory_in_gbs != null ? var.instance_flex_memory_in_gbs : local.shapes_config[var.shape]["memory_in_gbs"]
-    ocpus         = local.shape_is_flex == true && var.instance_flex_ocpus != null ? var.instance_flex_ocpus : local.shapes_config[var.shape]["ocpus"]
+    memory_in_gbs             = local.shape_is_flex == true && var.instance_flex_memory_in_gbs != null ? var.instance_flex_memory_in_gbs : local.shapes_config[var.shape]["memory_in_gbs"]
+    ocpus                     = local.shape_is_flex == true && var.instance_flex_ocpus != null ? var.instance_flex_ocpus : local.shapes_config[var.shape]["ocpus"]
     baseline_ocpu_utilization = var.baseline_ocpu_utilization
+  }
+
+  agent_config {
+    are_all_plugins_disabled = false
+    is_management_disabled   = false
+    is_monitoring_disabled   = false
+
+    # ! provider seems to have a bug with plugin_config stanzas below
+    // this configuration is applied at first resource creation
+    // subsequent updates are detected as changes by terraform but seems to be ignored by the provider ...
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.autonomous_linux
+      name          = "Oracle Autonomous Linux"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.bastion
+      name          = "Bastion"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.block_volume_mgmt
+      name          = "Block Volume Management"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.custom_logs
+      name          = "Custom Logs Monitoring"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.management
+      name          = "Management Agent"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.monitoring
+      name          = "Compute Instance Monitoring"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.osms
+      name          = "OS Management Service Agent"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.run_command
+      name          = "Compute Instance Run Command"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.vulnerability_scanning
+      name          = "Vulnerability Scanning"
+    }
   }
 
   create_vnic_details {

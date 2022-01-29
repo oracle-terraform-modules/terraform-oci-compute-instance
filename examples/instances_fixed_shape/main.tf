@@ -32,6 +32,17 @@ module "instance_nonflex" {
   shape                 = var.shape
   source_ocid           = var.source_ocid
   source_type           = var.source_type
+  cloud_agent_plugins = {
+    autonomous_linux       = "ENABLED"
+    bastion                = "ENABLED"
+    vulnerability_scanning = "ENABLED"
+    osms                   = "ENABLED"
+    management             = "DISABLED"
+    custom_logs            = "ENABLED"
+    run_command            = "ENABLED"
+    monitoring             = "ENABLED"
+    block_volume_mgmt      = "DISABLED"
+  }
   # operating system parameters
   ssh_public_keys = var.ssh_public_keys
   # networking parameters
