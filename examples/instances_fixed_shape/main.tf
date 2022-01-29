@@ -19,6 +19,7 @@ provider "oci" {
 
 # * This module will create a shape-based Compute Instance. OCPU and memory values are defined by the provided value for shape.
 module "instance_nonflex" {
+  # source = "git::https://github.com/oracle-terraform-modules/terraform-oci-compute-instance" ## use this to test directly from Github HEAD
   source = "oracle-terraform-modules/compute-instance/oci"
   # general oci parameters
   compartment_ocid = var.compartment_ocid
@@ -32,17 +33,7 @@ module "instance_nonflex" {
   shape                 = var.shape
   source_ocid           = var.source_ocid
   source_type           = var.source_type
-  cloud_agent_plugins = {
-    autonomous_linux       = "ENABLED"
-    bastion                = "ENABLED"
-    vulnerability_scanning = "ENABLED"
-    osms                   = "ENABLED"
-    management             = "DISABLED"
-    custom_logs            = "ENABLED"
-    run_command            = "ENABLED"
-    monitoring             = "ENABLED"
-    block_volume_mgmt      = "DISABLED"
-  }
+  cloud_agent_plugins   = var.cloud_agent_plugins
   # operating system parameters
   ssh_public_keys = var.ssh_public_keys
   # networking parameters
