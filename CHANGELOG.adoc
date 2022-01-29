@@ -14,6 +14,17 @@ Given a version number MAJOR.MINOR.PATCH:
 * MINOR version when adding functionality in a backwards compatible manner,
 * PATCH version when making backwards compatible bug fixes.
 
+== 2.4.0 - unreleased
+
+=== New features
+
+* Add support for burstable instances (fix #66)
+* Add support for Oracle Cloud Agent pulgins configuration (fix #17)
+
+=== Fixes
+
+* Instance display name no longer automatically append a number when only one instance is configured
+
 == 2.3.0 - 2021-11-12
 
 === New features

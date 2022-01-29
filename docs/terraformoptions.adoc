@@ -12,7 +12,7 @@
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[provider_oci]] <<provider_oci,oci>> |>= 3.27
+|[[provider_oci]] <<provider_oci,oci>> |4.61.0
 |===
 == Resources
 
@@ -55,6 +55,12 @@
 |`"paravirtualized"`
 |no
 
+|[[input_baseline_ocpu_utilization]] <<input_baseline_ocpu_utilization,baseline_ocpu_utilization>>
+|(Updatable) The baseline OCPU utilization for a subcore burstable VM instance
+|`string`
+|`"BASELINE_1_1"`
+|no
+
 |[[input_block_storage_sizes_in_gbs]] <<input_block_storage_sizes_in_gbs,block_storage_sizes_in_gbs>>
 |Sizes of volumes to create and attach to each instance.
 |`list(number)`
@@ -71,6 +77,28 @@
 |The size of the boot volume in GBs.
 |`number`
 |`null`
+|no
+
+|[[input_cloud_agent_plugins]] <<input_cloud_agent_plugins,cloud_agent_plugins>>
+|Whether each Oracle Cloud Agent plugins should be ENABLED or DISABLED.
+|`map(string)`
+|
+
+[source]
+----
+{
+  "autonomous_linux": "ENABLED",
+  "bastion": "ENABLED",
+  "block_volume_mgmt": "DISABLED",
+  "custom_logs": "ENABLED",
+  "management": "DISABLED",
+  "monitoring": "ENABLED",
+  "osms": "ENABLED",
+  "run_command": "ENABLED",
+  "vulnerability_scanning": "ENABLED"
+}
+----
+
 |no
 
 |[[input_compartment_ocid]] <<input_compartment_ocid,compartment_ocid>>
@@ -119,12 +147,6 @@
 |(Updatable) The total amount of memory available to the instance, in gigabytes.
 |`number`
 |`null`
-|no
-
-|[[baseline_ocpu_utilization]] <<input_baseline_ocpu_utilization,baseline_ocpu_utilization>>
-|(Updatable) The baseline OCPU utilization for a subcore burstable VM instance.
-|`string`
-|`BASELINE_1_1`
 |no
 
 |[[input_instance_flex_ocpus]] <<input_instance_flex_ocpus,instance_flex_ocpus>>

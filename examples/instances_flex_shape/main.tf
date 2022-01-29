@@ -35,7 +35,18 @@ module "instance_flex" {
   source_type                 = var.source_type
   instance_flex_memory_in_gbs = var.instance_flex_memory_in_gbs # only used if shape is Flex type
   instance_flex_ocpus         = 1                               # only used if shape is Flex type
-  baseline_ocpu_utilization = var.baseline_ocpu_utilization
+  baseline_ocpu_utilization   = var.baseline_ocpu_utilization
+  cloud_agent_plugins = {
+    autonomous_linux       = "ENABLED"
+    bastion                = "ENABLED"
+    vulnerability_scanning = "ENABLED"
+    osms                   = "ENABLED"
+    management             = "DISABLED"
+    custom_logs            = "ENABLED"
+    run_command            = "ENABLED"
+    monitoring             = "ENABLED"
+    block_volume_mgmt      = "DISABLED"
+  }
   # operating system parameters
   ssh_public_keys = var.ssh_public_keys
   # networking parameters
