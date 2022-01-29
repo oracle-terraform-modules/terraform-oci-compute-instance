@@ -20,6 +20,7 @@ provider "oci" {
 # * This module will create a Flex Compute Instance, using default values: 1 OCPU, 16 GB memory.
 # * `instance_flex_memory_in_gbs` and `instance_flex_ocpus` are not provided: default values will be applied.
 module "instance_flex" {
+  # source = "git::https://github.com/oracle-terraform-modules/terraform-oci-compute-instance" ## use this to test directly from Github HEAD
   source = "oracle-terraform-modules/compute-instance/oci"
   # general oci parameters
   compartment_ocid = var.compartment_ocid

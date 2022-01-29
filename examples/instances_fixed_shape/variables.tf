@@ -102,6 +102,21 @@ variable "shape" {
   default     = "VM.Standard2.1"
 }
 
+variable "cloud_agent_plugins" {
+  description = "Whether each Oracle Cloud Agent plugins should be ENABLED or DISABLED."
+  type        = map(string)
+  default = {
+    autonomous_linux       = "ENABLED"
+    bastion                = "ENABLED"
+    block_volume_mgmt      = "DISABLED"
+    custom_logs            = "ENABLED"
+    management             = "DISABLED"
+    monitoring             = "ENABLED"
+    osms                   = "ENABLED"
+    run_command            = "ENABLED"
+    vulnerability_scanning = "ENABLED"
+  }
+}
 variable "source_ocid" {
   description = "The OCID of an image or a boot volume to use, depending on the value of source_type."
   type        = string

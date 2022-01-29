@@ -102,6 +102,12 @@ variable "shape" {
   default     = "VM.Standard.E3.Flex"
 }
 
+variable "baseline_ocpu_utilization" {
+  description = "(Updatable) The baseline OCPU utilization for a subcore burstable VM instance"
+  type        = string
+  default     = "BASELINE_1_1"
+}
+
 variable "source_ocid" {
   description = "The OCID of an image or a boot volume to use, depending on the value of source_type."
   type        = string
