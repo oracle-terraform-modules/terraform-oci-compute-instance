@@ -83,6 +83,17 @@ resource "oci_core_instance" "instance" {
     baseline_ocpu_utilization = var.baseline_ocpu_utilization
   }
 
+  launch_options {
+
+    #Optional
+    #boot_volume_type = var.instance_launch_options_boot_volume_type
+    #firmware = var.instance_launch_options_firmware
+    #is_consistent_volume_naming_enabled = var.instance_launch_options_is_consistent_volume_naming_enabled
+    #is_pv_encryption_in_transit_enabled = var.instance_launch_options_is_pv_encryption_in_transit_enabled
+    network_type = var.instance_launch_options_network_type
+    #remote_data_volume_type = var.instance_launch_options_remote_data_volume_type
+  }
+
   agent_config {
     are_all_plugins_disabled = false
     is_management_disabled   = false
