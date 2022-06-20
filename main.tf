@@ -1,14 +1,7 @@
-# Copyright (c) 2018, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2018, 2022 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
-terraform {
-  required_version = ">= 0.12" // terraform version below 0.12 is not tested/supported with this module
-  required_providers {
-    oci = {
-      version = ">= 3.27" // force downloading oci-provider compatible with terraform v0.12
-    }
-  }
-}
+
 
 // Get all the Availability Domains for the region and default backup policies
 data "oci_identity_availability_domains" "ad" {
