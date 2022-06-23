@@ -130,6 +130,41 @@ variable "source_type" {
   default     = "image"
 }
 
+variable "capacity_type" {
+  description = "Host capacity type to use when launching compute instances: On-demand, Preemptible, Reserved or Dedicated."
+  type        = string
+  default     = "on-demand"
+
+  validation {
+    condition     = contains(["on-demand", "preemptible", "reserved", "dedicated"], var.capacity_type)
+    error_message = "Accepted values are on-demand, preemptible, reserved or dedicated."
+  }
+}
+
+variable "preemption_action" {
+  description = "The action to run when the preemptible instance is interrupted for eviction."
+  type = object({
+    type                 = string
+    preserve_boot_volume = bool
+  })
+  default = {
+    type                 = "TERMINATE"
+    preserve_boot_volume = false
+  }
+}
+
+variable "capacity_reservation_id" {
+  description = "(Optional) (Updatable) The OCID of the compute capacity reservation this instance is launched under."
+  type        = string
+  default     = null
+}
+
+variable "dedicated_vm_host_id" {
+  description = "(Optional) The OCID of dedicated VM host."
+  type        = string
+  default     = null
+}
+
 # operating system parameters
 
 variable "extended_metadata" {
