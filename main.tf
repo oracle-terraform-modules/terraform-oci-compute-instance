@@ -122,7 +122,7 @@ resource "oci_core_instance" "instance" {
     }
     plugins_config {
       desired_state = var.cloud_agent_plugins.java_management_service
-      name = "Oracle Java Management Service",
+      name = "Oracle Java Management Service"
     }
   }
 
