@@ -95,7 +95,8 @@
   "monitoring": "ENABLED",
   "osms": "ENABLED",
   "run_command": "ENABLED",
-  "vulnerability_scanning": "ENABLED"
+  "vulnerability_scanning": "ENABLED",
+  "java_management_service": "DISABLED"
 }
 ----
 

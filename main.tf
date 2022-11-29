@@ -47,8 +47,8 @@ locals {
     // prepare data with default values for flex shapes. Used to populate shape_config block with default values
     // Iterate through data.oci_core_shapes.current_ad.shapes (this exclude duplicate data in multi-ad regions) and create a map { name = { memory_in_gbs = "xx"; ocpus = "xx" } }
     for i in data.oci_core_shapes.current_ad.shapes : i.name => {
-      "memory_in_gbs" = i.memory_in_gbs
-      "ocpus"         = i.ocpus
+      memory_in_gbs = i.memory_in_gbs
+      ocpus         = i.ocpus
     }
   }
   shape_is_flex = length(regexall("^*.Flex", var.shape)) > 0 # evaluates to boolean true when var.shape contains .Flex
@@ -119,6 +119,10 @@ resource "oci_core_instance" "instance" {
     plugins_config {
       desired_state = var.cloud_agent_plugins.vulnerability_scanning
       name          = "Vulnerability Scanning"
+    }
+    plugins_config {
+      desired_state = var.cloud_agent_plugins.java_management_service
+      name = "Oracle Java Management Service"
     }
   }
 
