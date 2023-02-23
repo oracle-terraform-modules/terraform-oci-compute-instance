@@ -115,6 +115,7 @@ variable "cloud_agent_plugins" {
     osms                   = "ENABLED"
     run_command            = "ENABLED"
     vulnerability_scanning = "ENABLED"
+    java_management_service = "DISABLED"
   }
 }
 variable "source_ocid" {
