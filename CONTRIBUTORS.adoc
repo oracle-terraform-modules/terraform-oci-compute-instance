@@ -14,3 +14,4 @@ _Code Contributors have a least one merged PR in the code base of the project_
 - https://github.com/yimw[@yimw]
 - https://github.com/alexng-canuck[@alexng-canuck]
 - https://github.com/aorcl[@aorcl]
+- https://github.com/silent-at-gh[@silent-at-gh]

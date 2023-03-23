@@ -154,8 +154,23 @@ resource "oci_core_instance" "instance" {
     source_type             = var.source_type
   }
 
+
+  dynamic "launch_options" {
+    // This one is optional or user may specify zero (or more) options
+    for_each = length(keys(var.instance_launch_options)) > 0 ? [var.instance_launch_options] : []
+    content {
+      boot_volume_type                    = try(launch_options.value.boot_volume_type, null)
+      firmware                            = try(launch_options.value.firmware, null)
+      is_consistent_volume_naming_enabled = try(launch_options.value.is_consistent_volume_naming_enabled, null)
+      is_pv_encryption_in_transit_enabled = try(launch_options.value.is_pv_encryption_in_transit_enabled, null)
+      network_type                        = try(launch_options.value.network_type, null)
+      remote_data_volume_type             = try(launch_options.value.remote_data_volume_type, null)
+    }
+  }
+
   freeform_tags = local.merged_freeform_tags
   defined_tags  = var.defined_tags
+
 
   timeouts {
     create = var.instance_timeout

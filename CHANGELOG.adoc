@@ -20,6 +20,7 @@ Given a version number MAJOR.MINOR.PATCH:
 
 * Add support for burstable instances (fix #66)
 * Add support for Oracle Cloud Agent pulgins configuration (fix #17)
+* Add support for instance options from `launch_options` block (Issue #109)
 
 === Fixes
 
