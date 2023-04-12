@@ -85,43 +85,43 @@ resource "oci_core_instance" "instance" {
     // this configuration is applied at first resource creation
     // subsequent updates are detected as changes by terraform but seems to be ignored by the provider ...
     plugins_config {
-      desired_state = var.cloud_agent_plugins.autonomous_linux
+      desired_state = lookup(var.cloud_agent_plugins,"autonomous_linux","ENABLED")
       name          = "Oracle Autonomous Linux"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.bastion
+      desired_state = lookup(var.cloud_agent_plugins,"bastion","ENABLED")
       name          = "Bastion"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.block_volume_mgmt
+      desired_state = lookup(var.cloud_agent_plugins,"block_volume_mgmt","DISABLED")
       name          = "Block Volume Management"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.custom_logs
+      desired_state = lookup(var.cloud_agent_plugins,"custom_logs","ENABLED")
       name          = "Custom Logs Monitoring"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.management
+      desired_state = lookup(var.cloud_agent_plugins,"management","DISABLED")
       name          = "Management Agent"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.monitoring
+      desired_state = lookup(var.cloud_agent_plugins,"monitoring","ENABLED")
       name          = "Compute Instance Monitoring"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.osms
+      desired_state = lookup(var.cloud_agent_plugins,"osms","ENABLED")
       name          = "OS Management Service Agent"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.run_command
+      desired_state = lookup(var.cloud_agent_plugins,"run_command","ENABLED")
       name          = "Compute Instance Run Command"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.vulnerability_scanning
+      desired_state = lookup(var.cloud_agent_plugins,"vulnerability_scanning","ENABLED")
       name          = "Vulnerability Scanning"
     }
     plugins_config {
-      desired_state = var.cloud_agent_plugins.java_management_service
+      desired_state = lookup(var.cloud_agent_plugins,"java_management_service","DISABLED")
       name = "Oracle Java Management Service"
     }
   }
