@@ -76,6 +76,19 @@ resource "oci_core_instance" "instance" {
     baseline_ocpu_utilization = var.baseline_ocpu_utilization
   }
 
+  dynamic "preemptible_instance_config" {
+    for_each = var.capacity_type == "preemptible" ? [1] : []
+    content {
+      preemption_action {
+        type                 = lookup(var.preemption_action, "type", "TERMINATE")
+        preserve_boot_volume = lookup(var.preemption_action, "preserve_boot_volume", false)
+      }
+    }
+  }
+
+  capacity_reservation_id = var.capacity_type == "reserved" ? var.capacity_reservation_id : null
+  dedicated_vm_host_id    = var.capacity_type == "dedicated" ? var.dedicated_vm_host_id : null
+
   agent_config {
     are_all_plugins_disabled = false
     is_management_disabled   = false

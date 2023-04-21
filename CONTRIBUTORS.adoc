@@ -9,8 +9,9 @@ _Members can merge code to master_
 
 == Code Contributors
 
-_Code Contributors have a least one merged PR in the code base of the project_
+_Code Contributors have at least one merged PR in the code base of the project_
 
 - https://github.com/yimw[@yimw]
 - https://github.com/alexng-canuck[@alexng-canuck]
 - https://github.com/aorcl[@aorcl]
+- https://github.com/vadyochik[@vadyochik]

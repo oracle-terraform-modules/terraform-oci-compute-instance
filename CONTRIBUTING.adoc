@@ -34,7 +34,7 @@ You should ensure that your documentation changes include the following:
 * Don't forget how important the documentation is, especially for examples: we would love it if you updated the `main.tf` and `variables.tf` in the `examples/` folder. A simple example is fine.
 * You should also update the code examples in link:examples/README.md[examples/README]: it contains sample code blocks that probably needs to be updated to reflect your changes
 
-NOTE: Tables on xref:docs/terraformoptions.adoc[docs/terraformoptions] are automatically generated using terraform-docs. The maintainer will refesh this document before release, but variables must be defined as described in xref:doc/codingconventions.adoc[docs/codingconventions].
+NOTE: Tables on xref:docs/terraformoptions.adoc[docs/terraformoptions] are automatically generated using terraform-docs. The maintainer will refesh this document before release, but variables must be defined as described in xref:docs/codingconventions.adoc[docs/codingconventions].
 
 == How to contribute to this repository
 

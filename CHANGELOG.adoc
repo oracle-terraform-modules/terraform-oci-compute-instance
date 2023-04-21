@@ -14,7 +14,13 @@ Given a version number MAJOR.MINOR.PATCH:
 * MINOR version when adding functionality in a backwards compatible manner,
 * PATCH version when making backwards compatible bug fixes.
 
-== 2.4.0 - unreleased
+== 2.5.0 - unreleased
+
+* Add support for Capacity Types: On-demand, Preemptible, Reserved, Dedicated (fix #96)
+
+=== New features
+
+== 2.4.0 - 2022-06-06
 
 === New features
 
