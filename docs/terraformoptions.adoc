@@ -270,6 +270,12 @@
 |`""`
 |no
 
+|[[input_instance_launch_options_network_type]] <<input_instance_launch_options_network_type,instance_launch_options_network_type>>
+|Emulation type for the physical network interface card (NIC). Accepted values are E1000, VFIO or PARAVIRTUALIZED
+|`string`
+|`"PARAVIRTUALIZED"`
+|no
+
 |===
 == Outputs
 

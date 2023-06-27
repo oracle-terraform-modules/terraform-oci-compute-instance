@@ -231,6 +231,12 @@ variable "primary_vnic_nsg_ids" {
   default     = null
 }
 
+variable "instance_launch_options_network_type" {
+  description = "Emulation type for the physical network interface card (NIC). Accepted values are E1000, VFIO or PARAVIRTUALIZED"
+  type        = string
+  default     = "PARAVIRTUALIZED"
+}
+
 # storage parameters
 
 variable "attachment_type" {
