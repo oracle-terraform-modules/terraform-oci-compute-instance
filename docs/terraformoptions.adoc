@@ -156,6 +156,20 @@
 |`null`
 |no
 
+|[[input_instance_launch_options]] <<input_instance_launch_options,instance_launch_options>>
+|Options for tuning the compatibility and performance of VM shapes.
+Valid option names and their values are:
+
+  * __boot_volume_type__ - `ISCSI`, `SCSI`, `IDE`, `VFIO` or `PARAVIRTUALIZED`
+  * __network_type__ - `E1000`, `VFIO` or `PARAVIRTUALIZED`
+  * __firmware__ - `BIOS` or `UEFI_64`
+  * __remote_data_volume_type__ - `ISCSI`, `SCSI`, `IDE`, `VFIO` or `PARAVIRTUALIZED`
+  * __is_consistent_volume_naming_enabled__ - `true` or `false`
+  * __is_pv_encryption_in_transit_enabled__ - `true` of `false`
+|`map(any)`
+|`{}`
+|no
+
 |[[input_instance_state]] <<input_instance_state,instance_state>>
 |(Updatable) The target state for the instance. Could be set to RUNNING or STOPPED.
 |`string`

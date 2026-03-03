@@ -85,6 +85,56 @@ variable "instance_state" {
   }
 }
 
+variable "instance_launch_options" {
+  type          = map(any)
+  description   = "Options for tuning the compatibility and performance of VM shapes"
+  default       = {}
+
+  validation {
+    condition     = ( length(keys(var.instance_launch_options)) == 0
+                  ? true
+                  : alltrue(flatten([
+                      # check that provided options names are known
+                      length(setintersection([
+                        "boot_volume_type",
+                        "network_type",
+                        "firmware",
+                        "remote_data_volume_type",
+                        "is_consistent_volume_naming_enabled",
+                        "is_pv_encryption_in_transit_enabled" ], keys(var.instance_launch_options))
+                      ) == length(keys(var.instance_launch_options)),
+                      [
+                        # match every option agains allowed values range (avr)
+                        for k, avr in {
+                          "boot_volume_type"        : ["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
+                          "network_type"            : ["E1000", "VFIO", "PARAVIRTUALIZED"],
+                          "firmware"                : ["BIOS", "UEFI_64"],
+                          "remote_data_volume_type" : ["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"]
+                        }: contains(avr, lookup(var.instance_launch_options, k, false)) if contains(keys(var.instance_launch_options), k)
+                      ],
+                      [
+                        # verify that given option values are boolean
+                        for k in [
+                          "is_consistent_volume_naming_enabled",
+                          "is_pv_encryption_in_transit_enabled"
+                        ]: contains([true, false], try(tobool(lookup(var.instance_launch_options, k, null)), "") ) if contains(keys(var.instance_launch_options), k)
+                      ]
+                    ] ) ) )
+    error_message = <<EOEM
+Accepted option names and their values are:
+  * boot_volume_type                    - ISCSI, SCSI, IDE, VFIO or PARAVIRTUALIZED
+  * firmware                            - BIOS or UEFI_64
+  * is_consistent_volume_naming_enabled - true or false
+  * is_pv_encryption_in_transit_enabled - true of false
+  * network_type                        - E1000, VFIO or PARAVIRTUALIZED
+  * remote_data_volume_type             - ISCSI, SCSI, IDE, VFIO or PARAVIRTUALIZED
+
+More details:
+  https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance#launch_options
+EOEM
+  }
+}
+
 variable "shape" {
   description = "The shape of an instance."
   type        = string
